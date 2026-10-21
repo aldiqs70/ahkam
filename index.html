@@ -1,0 +1,1223 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="علاقات الحروف وموانعها من منهاج الدارسين: المثلان، المتجانسان، المتقاربان، المتباعدان، مع الأحكام والاستثناءات وتدريب تفاعلي. إعداد: رجاء يوسف.">
+<style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
+<title>علاقات الحروف</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@500;600;700&display=swap">
+<style>
+/* Layout: green title band (legend + progress), sticky tabs, one reading column.
+   Every lesson uses the same ladder: العلاقة ← القسم ← الحكم ← الاستثناء, each role with its own color. */
+:root{
+  --bg:#F3F5F1; --surface:#FFFFFF; --sunk:#ECF0EA; --line:#D6DDD5;
+  --ink:#1C2826; --muted:#5B6A66;
+  --band:#163F33; --band-ink:#EEF4F0; --band-muted:#A9C4B8; --band-line:#2C5A4C;
+  --def:#1E5C49;  --def-bg:#E1EFE8;
+  --hukm:#2C43A0; --hukm-bg:#E7EBFA;
+  --ist:#A85A05;  --ist-bg:#FBEEDC;
+  --quran:#B0262A;
+  --ok:#24734A; --bad:#B0262A;
+  --f-display:"Reem Kufi","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans Arabic",system-ui,"Segoe UI",Tahoma,sans-serif;
+  --f-quran:"Amiri Quran","Amiri","Traditional Arabic",serif;
+  --f-verse:"Amiri","Traditional Arabic",serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111715; --surface:#19211E; --sunk:#151C1A; --line:#2B3632;
+  --ink:#E5EBE8; --muted:#9AA9A4;
+  --band:#123128; --band-ink:#E8F1EC; --band-muted:#8FB3A4; --band-line:#24493D;
+  --def:#7CCBAE;  --def-bg:#1B3128;
+  --hukm:#AAB7FF; --hukm-bg:#20284A;
+  --ist:#F2BE6E;  --ist-bg:#38290F;
+  --quran:#F1857A; --ok:#86D7A9; --bad:#F1857A; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#111715; --surface:#19211E; --sunk:#151C1A; --line:#2B3632;
+  --ink:#E5EBE8; --muted:#9AA9A4;
+  --band:#123128; --band-ink:#E8F1EC; --band-muted:#8FB3A4; --band-line:#24493D;
+  --def:#7CCBAE;  --def-bg:#1B3128;
+  --hukm:#AAB7FF; --hukm-bg:#20284A;
+  --ist:#F2BE6E;  --ist-bg:#38290F;
+  --quran:#F1857A; --ok:#86D7A9; --bad:#F1857A; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{direction:rtl}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.85;direction:rtl}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:880px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+p{margin:0}
+b,strong{font-weight:700}
+
+/* ---------- Title band ---------- */
+.band{background:var(--band);color:var(--band-ink);position:relative;overflow:hidden}
+.band::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.10;
+  background-image:repeating-conic-gradient(from 22.5deg at 50% 50%,var(--band-ink) 0 6.25%,transparent 0 12.5%);
+  background-size:46px 46px;-webkit-mask-image:linear-gradient(to left,#000,transparent 70%);mask-image:linear-gradient(to left,#000,transparent 70%)}
+.band .wrap{position:relative;z-index:1;padding-block:34px 22px;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:13px;color:var(--band-muted);display:flex;flex-wrap:wrap;gap:4px 12px}
+.eyebrow span+span::before{content:"·";margin-inline-end:12px}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(40px,9vw,64px);line-height:1.1;margin:0;text-wrap:balance}
+.lede{max-width:60ch;color:var(--band-muted);font-size:16.5px}
+.byline{display:inline-flex;align-items:center;gap:10px;font-size:15px}
+.byline .who{font-family:var(--f-display);font-weight:600;font-size:18px;color:var(--band-ink)}
+.byline .k{color:var(--band-muted)}
+.band-foot{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between;border-top:1px solid var(--band-line);padding-top:14px;margin-top:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;color:var(--band-muted);align-items:center}
+.legend .sw{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.progress{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--band-muted);font-variant-numeric:tabular-nums}
+.progress .track{width:120px;height:6px;border-radius:99px;background:var(--band-line);overflow:hidden}
+.progress .track i{display:block;height:100%;width:0;background:var(--band-ink);transition:width .4s}
+
+/* ---------- Tabs ---------- */
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.tabrow{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabrow::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;font:inherit;font-family:var(--f-display);font-weight:600;font-size:15.5px;color:var(--muted);background:none;border:0;padding:13px 13px 11px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;display:inline-flex;gap:6px;align-items:center}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--def);border-bottom-color:var(--def)}
+.tab .tick{display:none;width:16px;height:16px;border-radius:50%;background:var(--def);color:var(--surface);font-size:11px;line-height:16px;text-align:center}
+.tab.done .tick{display:inline-block}
+button:focus-visible{outline:2px solid var(--def);outline-offset:2px;border-radius:6px}
+
+main{padding-block:28px 56px}
+section.panel{display:flex;flex-direction:column;gap:24px}
+section.panel[hidden]{display:none}
+h2{font-family:var(--f-display);font-weight:700;font-size:32px;line-height:1.3;margin:0;text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:600;font-size:21px;margin:0;color:var(--def)}
+.block{display:flex;flex-direction:column;gap:12px}
+.muted{color:var(--muted)}
+
+/* ---------- Roles ---------- */
+.ay{font-family:var(--f-quran);color:var(--quran);font-size:1.22em;line-height:1.6;white-space:nowrap;font-weight:400}
+.def{background:var(--def-bg);border-radius:12px;padding:14px 18px;font-size:17.5px;display:flex;flex-direction:column;gap:8px}
+.def .lbl{font-family:var(--f-display);font-weight:700;color:var(--def);margin-inline-end:6px}
+.def .alt{font-size:15px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.hk{color:var(--hukm);font-weight:700}
+.ik{color:var(--ist);font-weight:700}
+.note{font-size:14.5px;color:var(--muted)}
+.note b{color:var(--ink)}
+.ex{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline}
+
+/* Lesson map */
+.map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.map a{display:flex;flex-direction:column;gap:4px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-decoration:none;color:inherit}
+.map a:hover{border-color:var(--def)}
+.map .mq{font-family:var(--f-display);font-weight:700;font-size:17px}
+.map .mh{font-size:14px;color:var(--hukm);font-weight:600;line-height:1.6}
+.map .mi{font-size:13px;color:var(--ist);font-weight:600;line-height:1.6}
+
+/* Qism card */
+.qism{border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden;scroll-margin-top:64px}
+.qism-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:12px 18px;background:var(--sunk);border-bottom:1px solid var(--line)}
+.qism-head .name{font-family:var(--f-display);font-weight:700;font-size:20px}
+.qism-head .count{margin-inline-start:auto;font-size:14px;font-weight:600;color:var(--hukm)}
+.motion{display:inline-flex;gap:4px;align-items:center}
+.motion i{font-style:normal;font-size:12px;font-weight:700;padding:0 7px;border-radius:4px;border:1px solid var(--line);background:var(--surface);color:var(--muted);line-height:1.9}
+.motion i.s{border-color:var(--def);color:var(--def)}
+.qism-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:14px}
+
+/* Ruling block */
+.hukm{border-radius:12px;border:1px solid var(--line);overflow:hidden}
+.hukm-head{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;padding:9px 14px;background:var(--hukm-bg);border-inline-start:4px solid var(--hukm)}
+.hukm-head .n{font-family:var(--f-display);font-weight:700;color:var(--hukm);font-size:15px}
+.hukm-head .t{font-family:var(--f-display);font-weight:700;color:var(--hukm);font-size:18px}
+.hukm-head .c{font-size:14.5px;color:var(--muted)}
+.hukm-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px}
+.pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:4px 18px}
+.pairs.one{grid-template-columns:1fr}
+.pairs > div{display:flex;flex-wrap:wrap;gap:2px 8px;align-items:baseline;min-width:0}
+.pairs .k{font-weight:600;font-size:14.5px;color:var(--muted);white-space:nowrap}
+.sub-t{font-weight:700;font-size:15.5px}
+
+/* Exception block */
+.ist{border-radius:10px;background:var(--ist-bg);border-inline-start:4px solid var(--ist);padding:10px 14px;display:flex;flex-direction:column;gap:6px}
+.ist-head{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.ist-tag{font-family:var(--f-display);font-weight:700;font-size:13px;color:var(--surface);background:var(--ist);border-radius:5px;padding:0 8px;line-height:1.8}
+.ist-head .c{font-weight:700}
+.ist .opt{display:flex;gap:8px;align-items:baseline}
+.ist .opt .bl{font-weight:700;color:var(--ist);flex:0 0 auto}
+
+/* Verse */
+.verse{border:1px solid var(--line);border-radius:12px;padding:12px 18px;background:var(--surface)}
+.verse .src{font-size:13.5px;color:var(--muted);margin-bottom:4px}
+.bayt{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;font-family:var(--f-verse);font-size:19px;color:var(--quran);line-height:1.95}
+.bayt span:nth-child(even){text-align:left}
+
+/* Tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:600px}
+th,td{padding:9px 14px;text-align:right;vertical-align:top;border-bottom:1px solid var(--line)}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+thead th{font-family:var(--f-display);font-weight:600;font-size:15px;background:var(--sunk)}
+tbody th{font-family:var(--f-display);font-weight:700;font-size:17px;color:var(--def);white-space:nowrap;background:var(--sunk)}
+td.q{font-weight:700;white-space:nowrap}
+td .hk,td .ik{display:block;line-height:1.7}
+td .ik{font-size:14px;font-weight:600}
+tr.grp td,tr.grp th{border-top:2px solid var(--line)}
+table.apps td{font-size:15px}
+.ex-tbl td{font-size:15px}
+.ex-tbl td.n{font-family:var(--f-display);font-weight:700;color:var(--muted);width:1%;white-space:nowrap}
+.ex-tbl.go thead th{background:var(--def-bg);color:var(--def)}
+.ex-tbl.stop thead th{background:var(--ist-bg);color:var(--ist)}
+.ex-tbl .ay{white-space:normal}
+.ex-tbl .ctx{display:block;font-size:13px;font-weight:700;color:var(--muted)}
+
+/* Intro pieces */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;counter-increment:s}
+.step::before{content:"الخطوة " counter(s,arabic-indic);font-size:12.5px;font-weight:700;color:var(--muted)}
+.step h4{font-family:var(--f-display);font-weight:600;font-size:18px;margin:0}
+.step:nth-child(1) h4{color:var(--def)} .step:nth-child(3) h4{color:var(--hukm)}
+.step p{font-size:15px;color:var(--muted)}
+.meet{display:flex;flex-direction:column;gap:8px}
+.meet .m{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 16px}
+.meet .num{font-family:var(--f-display);font-weight:700;color:var(--muted)}
+.tag{font-size:12.5px;font-weight:700;padding:0 9px;border-radius:999px;white-space:nowrap;margin-inline-start:auto}
+.tag.yes{color:var(--def);background:var(--def-bg)}
+.tag.no{color:var(--muted);background:var(--sunk)}
+.rel-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.rel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;cursor:pointer;text-align:right;font:inherit;color:inherit}
+.rel:hover{border-color:var(--def)}
+.rel .n{font-family:var(--f-display);font-weight:700;font-size:21px;color:var(--def)}
+.rel .d{font-size:15px}
+.rel .k{font-size:13.5px;color:var(--muted)}
+
+/* Mawani */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.col{border-radius:14px;border:1px solid var(--line);background:var(--surface);overflow:hidden;min-width:0}
+.col-head{padding:12px 16px;font-family:var(--f-display);font-weight:700;font-size:19px}
+.col.stop .col-head{background:var(--ist-bg);color:var(--ist);border-bottom:2px solid var(--ist)}
+.col.go .col-head{background:var(--def-bg);color:var(--def);border-bottom:2px solid var(--def)}
+.col ol{margin:0;padding:0;list-style:none;counter-reset:c}
+.col li{counter-increment:c;padding:12px 16px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.col li:last-child{border-bottom:0}
+.col li > .t{font-weight:700;display:flex;gap:8px}
+.col li > .t::before{content:counter(c,arabic-indic) ".";font-family:var(--f-display);flex:0 0 auto}
+.col.stop li > .t::before{color:var(--ist)}
+.col.go li > .t::before{color:var(--def)}
+.why{font-size:14.5px;color:var(--muted)}
+.why b{color:var(--ink)}
+.rel-ans{font-size:14px;font-weight:600;color:var(--hukm)}
+
+/* Lesson end */
+.wrapup{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.wrapup h3{color:var(--ink)}
+.wrapup ul{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:4px}
+.wrapup .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.btn{font:inherit;font-family:var(--f-display);font-weight:600;font-size:16px;padding:9px 20px;border-radius:10px;border:0;background:var(--def);color:var(--surface);cursor:pointer}
+.btn.ghost{background:none;color:var(--def);border:1.5px solid var(--def)}
+.btn.done{background:var(--def-bg);color:var(--def)}
+.btn:disabled{opacity:.45;cursor:default}
+.cheer{font-size:14.5px;color:var(--def);font-weight:600}
+
+/* Study plan */
+.plan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.plan button{font:inherit;text-align:right;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;display:flex;gap:10px;align-items:center;color:var(--ink)}
+.plan button:hover{border-color:var(--def)}
+.plan .dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex:0 0 auto;display:grid;place-items:center;font-size:12px;color:var(--surface)}
+.plan button.done .dot{background:var(--def);border-color:var(--def)}
+.plan button.done .dot::after{content:"✓"}
+.plan .pn{font-family:var(--f-display);font-weight:600}
+
+/* Quiz */
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:14px;font-weight:600;padding:4px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--def);color:var(--def);background:var(--def-bg)}
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:16px}
+.qtop{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:6px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--def);width:0;transition:width .3s}
+.qword{text-align:center;display:flex;flex-direction:column;gap:2px;padding-block:4px}
+.qword .ay{font-size:40px;white-space:normal}
+.qword .pair{font-size:15px;color:var(--muted)}
+.qword .ctx{font-size:13px;font-weight:700;color:var(--ist)}
+.qgroup{display:flex;flex-direction:column;gap:8px}
+.qgroup .q{font-weight:600;font-size:15px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{font:inherit;font-weight:600;font-size:15.5px;padding:8px 16px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--def)}
+.opt[aria-pressed="true"]{border-color:var(--def);background:var(--def-bg);color:var(--def)}
+.opt.right{border-color:var(--ok);color:var(--ok);background:var(--def-bg)}
+.opt.wrong{border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.opt:disabled{cursor:default}
+.qactions{display:flex;gap:10px;flex-wrap:wrap}
+.feedback{border-radius:10px;padding:12px 16px;background:var(--sunk);display:flex;flex-direction:column;gap:4px;font-size:15.5px}
+.feedback .verdict{font-family:var(--f-display);font-weight:700;font-size:18px}
+.feedback .verdict.ok{color:var(--ok)} .feedback .verdict.no{color:var(--bad)}
+.done-box{text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center;padding-block:10px}
+.done-box .big{font-family:var(--f-display);font-weight:700;font-size:46px;color:var(--def);font-variant-numeric:tabular-nums}
+.done-box .acts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
+footer{border-top:1px solid var(--line);padding-block:20px 36px;color:var(--muted);font-size:13.5px}
+footer .wrap{display:flex;flex-direction:column;gap:4px}
+footer .who{font-family:var(--f-display);font-weight:600;color:var(--ink);font-size:15px}
+
+@media (max-width:680px){
+  .steps,.map,.rel-grid,.two{grid-template-columns:1fr}
+  .plan{grid-template-columns:1fr 1fr}
+  .bayt{grid-template-columns:1fr}
+  .bayt span:nth-child(even){margin-bottom:6px}
+  h2{font-size:27px}
+  .qword .ay{font-size:34px}
+  .qism-head .count{margin-inline-start:0;width:100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="band">
+  <div class="wrap">
+    <div class="eyebrow"><span>منهاج الدارسين لترتيل الكتاب المبين</span><span>المستوى الثالث</span><span>الباب الأول</span></div>
+    <h1>علاقات الحروف</h1>
+    <p class="lede">الإظهار والإدغام بين الحروف: كيف تعرف العلاقة بين حرفين، وقسمها، وحكمها، وما يُستثنى منه، وما يمنع العلاقة أصلاً.</p>
+    <div class="byline"><span class="k">إعداد</span><span class="who">رجاء يوسف</span></div>
+    <div class="band-foot">
+      <div class="legend" aria-label="دليل الألوان">
+        <span class="sw"><i style="background:var(--def)"></i>تعريف</span>
+        <span class="sw"><i style="background:var(--hukm)"></i>حكم</span>
+        <span class="sw"><i style="background:var(--ist)"></i>استثناء / مانع</span>
+        <span class="sw"><i style="background:var(--quran)"></i>مثال قرآني</span>
+      </div>
+      <div class="progress"><span id="prog-txt">أنجزت ٠ من ٦ دروس</span><span class="track"><i id="prog-bar"></i></span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="الدروس">
+  <div class="wrap">
+    <div class="tabrow" role="tablist">
+      <button class="tab" role="tab" id="t-madkhal" data-panel="madkhal" aria-selected="true">المدخل<span class="tick">✓</span></button>
+      <button class="tab" role="tab" id="t-mithlan" data-panel="mithlan" aria-selected="false">المِثلان<span class="tick">✓</span></button>
+      <button class="tab" role="tab" id="t-mutajanisan" data-panel="mutajanisan" aria-selected="false">المتجانسان<span class="tick">✓</span></button>
+      <button class="tab" role="tab" id="t-mutaqariban" data-panel="mutaqariban" aria-selected="false">المتقاربان<span class="tick">✓</span></button>
+      <button class="tab" role="tab" id="t-mutabaidan" data-panel="mutabaidan" aria-selected="false">المتباعدان<span class="tick">✓</span></button>
+      <button class="tab" role="tab" id="t-mawani" data-panel="mawani" aria-selected="false">موانع العلاقة<span class="tick">✓</span></button>
+      <button class="tab" role="tab" id="t-tadrib" data-panel="tadrib" aria-selected="false">تدريب</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- =================== المدخل =================== -->
+<section class="panel" id="madkhal" role="tabpanel" aria-labelledby="t-madkhal">
+  <div class="block">
+    <h2>علاقة الحروف ببعضها</h2>
+    <div class="def"><p><span class="lbl">التعريف:</span>هو ما ينشأ من أحكام عند تلاقي الحروف.</p></div>
+  </div>
+
+  <div class="block">
+    <h3>خطة الدراسة</h3>
+    <div class="plan" id="plan"></div>
+  </div>
+
+  <div class="block">
+    <h3>التقاء الحروف على ثلاثة أنواع</h3>
+    <div class="meet">
+      <div class="m"><span class="num">١</span><span>أن يلتقيا <b>لفظاً وخطاً</b>، لا يفصل بينهما فاصل:</span><span class="ay">﴿وَلَا يَغْتَب بَّعْضُكُم﴾</span><span class="tag yes">معوَّل عليه</span></div>
+      <div class="m"><span class="num">٢</span><span>أن يلتقيا <b>خطاً لا لفظاً</b>:</span><span class="ay">﴿إِنَّهُ هُوَ﴾</span><span class="ay">﴿فَضْلِهِ هُوَ﴾</span><span class="tag yes">معوَّل عليه</span></div>
+      <div class="m"><span class="num">٣</span><span>أن يلتقيا <b>لفظاً لا خطاً</b>:</span><span class="ay">﴿أَنَا نَذِيرٌ﴾</span><span class="ay">﴿أَنَا النَّذِيرُ﴾</span><span class="tag no">غير معوَّل عليه</span></div>
+    </div>
+    <p class="note">وينقسم النوعان الأولان إلى أربعة أقسام: التماثل، والتجانس، والتقارب، والتباعد.</p>
+  </div>
+
+  <div class="block">
+    <h3>ثلاث خطوات لكل كلمة</h3>
+    <div class="steps">
+      <div class="step"><h4>نوع العلاقة</h4><p>قارن الحرفين في الاسم والمخرج والصفة: مثلان، متجانسان، متقاربان، أو متباعدان.</p></div>
+      <div class="step"><h4>القسم</h4><p>انظر إلى حركتهما: الأول ساكن ← صغير. كلاهما متحرك ← كبير. الأول متحرك والثاني ساكن ← مطلق.</p></div>
+      <div class="step"><h4>الحكم</h4><p>طبّق حكم القسم، ثم تأكد أن الكلمة ليست من المستثنيات.</p></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>العلاقات الأربع</h3>
+    <div class="rel-grid">
+      <button class="rel" type="button" data-go="mithlan"><span class="n">المِثلان</span><span class="d">اتحدا في الاسم والرسم.</span><span class="k">الكاف مع الكاف</span></button>
+      <button class="rel" type="button" data-go="mutajanisan"><span class="n">المتجانسان</span><span class="d">اتفقا في المخرج، واختلفا في الصفة.</span><span class="k">الدال مع التاء</span></button>
+      <button class="rel" type="button" data-go="mutaqariban"><span class="n">المتقاربان</span><span class="d">تقاربا مخرجاً أو صفة.</span><span class="k">اللام مع الراء</span></button>
+      <button class="rel" type="button" data-go="mutabaidan"><span class="n">المتباعدان</span><span class="d">تباعدا مخرجاً، واختلفا صفة.</span><span class="k">النون مع الخاء</span></button>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>الأقسام الثلاثة</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>القسم</th><th>الحرف الأول</th><th>الحرف الثاني</th><th>سبب التسمية</th></tr></thead>
+      <tbody>
+        <tr><th>صغير</th><td>ساكن</td><td>متحرك</td><td>فيه عمل واحد: إدغام الأول في الثاني.</td></tr>
+        <tr><th>كبير</th><td>متحرك</td><td>متحرك</td><td>فيه عملان عند من يدغمه: تسكين الأول ثم إدغامه.</td></tr>
+        <tr><th>مطلق</th><td>متحرك</td><td>ساكن</td><td>لاتفاق القراء على إظهاره.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="block">
+    <h3>الإدغام</h3>
+    <div class="def">
+      <p><span class="lbl">تعريفه:</span>النطق بالحرفين حرفاً واحداً مشدداً كالثاني.</p>
+      <p class="alt"><b>أسبابه:</b> التماثل، والتجانس، والتقارب. <b>فائدته:</b> التخفيف والتسهيل في النطق. <b>كيفيته:</b> قلب الحرف الأول إلى جنس الثاني ثم إدغامه فيه، فالنون في <span class="ay">﴿مِن لَّدُنَّا﴾</span> تُقلب لاماً ثم تُدغم.</p>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>نوعه</th><th>ما يحدث</th><th>الضبط في المصحف</th><th>أمثلة</th></tr></thead>
+      <tbody>
+        <tr><th>كامل</th><td>يذهب الحرف المدغم ذاتاً وصفة.</td><td>تعرية الأول، وتشديد الثاني.</td><td><span class="ay">﴿فَآمَنَت طَّائِفَةٌ﴾</span> <span class="ay">﴿وَقُل رَّبِّ﴾</span></td></tr>
+        <tr><th>ناقص</th><td>يذهب ذاتاً وتبقى صفته.</td><td>تعرية الأول، وعدم تشديد الثاني.</td><td><span class="ay">﴿بَسَطتَ﴾</span> (الإطباق) <span class="ay">﴿مِن وَلِيٍّ﴾</span> (الغنة)</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="block">
+    <h3>الجدول الجامع: كل علاقة، أحكامها، واستثناءاتها</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>العلاقة</th><th>القسم</th><th>الأحكام</th><th>الاستثناءات</th></tr></thead>
+      <tbody>
+        <tr class="grp"><th rowspan="3">المِثلان</th><td class="q">صغير</td><td><span class="hk">وجوب الإدغام</span></td><td><span class="ik">الأول حرف مد ← إظهار</span><span class="ik">الأول هاء سكت ﴿مَالِيَهْ هَلَكَ﴾ ← وجهان</span></td></tr>
+        <tr><td class="q">كبير</td><td><span class="hk">الإظهار</span></td><td><span class="ik">﴿تَأْمَنَّا﴾ ← اختلاس أو إشمام</span></td></tr>
+        <tr><td class="q">مطلق</td><td><span class="hk">الإظهار لجميع القراء</span></td><td class="muted">لا يوجد</td></tr>
+        <tr class="grp"><th rowspan="3">المتجانسان</th><td class="q">صغير</td><td><span class="hk">١. وجوب الإدغام (د ت، ت د، ذ ظ، ت ط، ط ت)</span><span class="hk">٢. جواز الإدغام (ث ذ، ب م)</span><span class="hk">٣. الإخفاء الشفوي (م ب)</span><span class="hk">٤. الإظهار (الباقي)</span></td><td><span class="ik">الطاء مع التاء ← إدغام ناقص</span></td></tr>
+        <tr><td class="q">كبير</td><td><span class="hk">الإظهار</span></td><td class="muted">لا يوجد</td></tr>
+        <tr><td class="q">مطلق</td><td><span class="hk">الإظهار لجميع القراء</span></td><td class="muted">لا يوجد</td></tr>
+        <tr class="grp"><th rowspan="3">المتقاربان</th><td class="q">صغير</td><td><span class="hk">١. وجوب الإدغام (ل ر، ق ك، النون في يرملو، أل الشمسية)</span><span class="hk">٢. الإخفاء (النون، عدا ك ق)</span><span class="hk">٣. الإقلاب (ن ب)</span><span class="hk">٤. الإظهار (الباقي)</span></td><td><span class="ik">﴿بَلْ رَانَ﴾ ﴿مَنْ رَاقٍ﴾ ← سكت مع إظهار</span><span class="ik">﴿الدُّنْيَا﴾ وأخواتها ← إظهار مطلق</span><span class="ik">﴿يس (١) وَالْقُرْآنِ﴾ ﴿نۚ وَالْقَلَمِ﴾ ← إظهار للرواية</span></td></tr>
+        <tr><td class="q">كبير</td><td><span class="hk">الإظهار</span></td><td class="muted">لا يوجد</td></tr>
+        <tr><td class="q">مطلق</td><td><span class="hk">الإظهار لجميع القراء</span></td><td class="muted">لا يوجد</td></tr>
+        <tr class="grp"><th rowspan="3">المتباعدان</th><td class="q">صغير</td><td><span class="hk">١. وجوب الإظهار</span><span class="hk">٢. الإخفاء (النون مع ك ق)</span></td><td class="muted">لا يوجد</td></tr>
+        <tr><td class="q">كبير</td><td><span class="hk">الإظهار</span></td><td class="muted">لا يوجد</td></tr>
+        <tr><td class="q">مطلق</td><td><span class="hk">الإظهار لجميع القراء</span></td><td class="muted">لا يوجد</td></tr>
+      </tbody>
+    </table></div>
+    <div class="def"><p><span class="lbl">القاعدة الذهبية:</span>الكبير والمطلق حكمهما الإظهار في كل العلاقات لحفص، إلا ﴿تَأْمَنَّا﴾. فركّز جهدك على القسم <b>الصغير</b>.</p></div>
+  </div>
+
+  <div class="verse">
+    <div class="src">قال الشيخ سليمان الجمزوري في «تحفة الأطفال»:</div>
+    <div class="bayt">
+      <span>إِنْ فِي الصِّفَاتِ وَالْمَخَارِجِ اتَّفَقْ</span><span>حَرْفَانِ فَالْمِثْلَانِ فِيهِمَا أَحَقّْ</span>
+      <span>وَإِنْ يَكُونَا مَخْرَجًا تَقَارَبَا</span><span>وَفِي الصِّفَاتِ اخْتَلَفَا يُلَقَّبَا</span>
+      <span>مُتَقَارِبَيْنِ أَوْ يَكُونَا اتَّفَقَا</span><span>فِي مَخْرَجٍ دُونَ الصِّفَاتِ حُقِّقَا</span>
+      <span>بِالْمُتَجَانِسَيْنِ ثُمَّ إِنْ سَكَنْ</span><span>أَوَّلُ كُلٍّ فَالصَّغِيرَ سَمِّيَنْ</span>
+      <span>أَوْ حُرِّكَ الْحَرْفَانِ فِي كُلٍّ فَقُلْ</span><span>كُلٌّ كَبِيرٌ وَافْهَمَنْهُ بِالْمُثُلْ</span>
+    </div>
+  </div>
+
+  <div class="wrapup" data-lesson="madkhal">
+    <h3>خلاصة المدخل</h3>
+    <ul>
+      <li>العلاقة بين حرفين متجاورين لفظاً وخطاً، أو خطاً فقط.</li>
+      <li>نوع العلاقة من الاسم والمخرج والصفة، والقسم من الحركة.</li>
+      <li>الكبير والمطلق إظهار دائماً لحفص (إلا ﴿تَأْمَنَّا﴾).</li>
+    </ul>
+    <div class="acts"><button class="btn" type="button" data-done="madkhal">أنهيت هذا الدرس</button><button class="btn ghost" type="button" data-go="mithlan">الدرس التالي: المِثلان</button></div>
+  </div>
+</section>
+
+<!-- =================== المثلان =================== -->
+<section class="panel" id="mithlan" role="tabpanel" aria-labelledby="t-mithlan" hidden>
+  <div class="block">
+    <h2>المِثلان</h2>
+    <div class="def">
+      <p><span class="lbl">التعريف:</span>الحرفان اللذان اتحدا في الاسم والرسم، كالكافين في <span class="ay">﴿يُدْرِككُّمُ الْمَوْتُ﴾</span> والميمين في <span class="ay">﴿لَهُم مَّا يَشَاءُونَ﴾</span>.</p>
+      <p class="alt">وقيل: اتفقا مخرجاً وصفة. والأول أصح لأنه جامع مانع، فهو يُدخل الواوين والياءين المديتين مثل <span class="ay">﴿فِي يَوْمٍ﴾</span> و<span class="ay">﴿قَالُوا وَهُمْ﴾</span>، مع اختلافهما صفة ومخرجاً.</p>
+    </div>
+  </div>
+
+  <nav class="map" aria-label="خريطة الدرس">
+    <a href="#m-s"><span class="mq">صغير</span><span class="mh">وجوب الإدغام</span><span class="mi">استثناءان: حرف المد، هاء السكت</span></a>
+    <a href="#m-k"><span class="mq">كبير</span><span class="mh">الإظهار</span><span class="mi">استثناء: ﴿تَأْمَنَّا﴾</span></a>
+    <a href="#m-m"><span class="mq">مطلق</span><span class="mh">الإظهار لجميع القراء</span><span class="mi">بلا استثناء</span></a>
+  </nav>
+
+  <div class="qism" id="m-s">
+    <div class="qism-head"><span class="name">١. المِثلان الصغير</span><span class="motion"><i class="s">ساكن</i><i>متحرك</i></span><span class="count">حكم واحد واستثناءان</span></div>
+    <div class="qism-body">
+      <p class="note">سُمّي صغيراً لأنه لا يكون فيه إلا عمل واحد: إدغام الأول في الثاني.</p>
+      <div class="hukm">
+        <div class="hukm-head"><span class="t">وجوب الإدغام</span><span class="c">في كل الحروف</span></div>
+        <div class="hukm-body">
+          <div class="pairs">
+            <div><span class="k">الباء</span><span class="ay">﴿اضْرِب بِّعَصَاكَ﴾</span></div>
+            <div><span class="k">التاء</span><span class="ay">﴿طَلَعَت تَّزَاوَرُ﴾</span></div>
+            <div><span class="k">الذال</span><span class="ay">﴿إِذ ذَّهَبَ﴾</span></div>
+            <div><span class="k">الراء</span><span class="ay">﴿وَاذْكُر رَّبَّكَ﴾</span></div>
+            <div><span class="k">العين</span><span class="ay">﴿تَسْتَطِع عَّلَيْهِ﴾</span></div>
+            <div><span class="k">الفاء</span><span class="ay">﴿يُسْرِف فِّي الْقَتْلِ﴾</span></div>
+            <div><span class="k">الكاف</span><span class="ay">﴿يُدْرِككُّمُ﴾</span></div>
+            <div><span class="k">اللام</span><span class="ay">﴿فَقُل لَّهُمْ﴾</span></div>
+            <div><span class="k">الميم</span><span class="ay">﴿كَم مِّن﴾</span></div>
+            <div><span class="k">النون</span><span class="ay">﴿مِن نِّعْمَةٍ﴾</span></div>
+            <div><span class="k">الهاء</span><span class="ay">﴿يُكْرِههُّنَّ﴾</span></div>
+            <div><span class="k">الواو</span><span class="ay">﴿عَصَوا وَّكَانُوا﴾</span></div>
+            <div><span class="k">الياء</span><span class="ay">﴿بِأَيِّكُمُ﴾</span></div>
+          </div>
+          <p class="note"><b>الضبط:</b> تعرية الحرف الأول عن الحركة، وتشديد الحرف الثاني.</p>
+        </div>
+      </div>
+      <div class="ist">
+        <div class="ist-head"><span class="ist-tag">استثناء ١</span><span class="c">إذا كان الحرف الأول حرف مد (واواً أو ياءً)</span></div>
+        <p>الحكم: <span class="ik">الإظهار عند جميع القراء</span></p>
+        <div class="ex"><span class="note">الواو:</span><span class="ay">﴿اصْبِرُوا وَصَابِرُوا﴾</span><span class="note">الياء:</span><span class="ay">﴿فِي يَوْمَيْنِ﴾</span><span class="ay">﴿الَّذِي يُوَسْوِسُ﴾</span></div>
+        <p class="note"><b>العلة:</b> لئلا يذهب الإدغامُ بالمد، فكان الإظهار محافظةً عليه.</p>
+      </div>
+      <div class="ist">
+        <div class="ist-head"><span class="ist-tag">استثناء ٢</span><span class="c">إذا كان الحرف الأول هاء سكت</span><span class="ay">﴿مَالِيَهْۜ (٢٨) هَلَكَ﴾</span></div>
+        <p>الحكم حال الوصل: <span class="ik">وجهان</span></p>
+        <div class="opt"><span class="bl">أ.</span><p><b>السكت مع الإظهار</b>، وهو المقدَّم في الأداء: وقفة لطيفة على هاء <span class="ay">﴿مَالِيَهْ﴾</span> من غير تنفس. <span class="note">الضبط: سين صغيرة فوق الهاء، وعدم تشديد هاء <span class="ay">﴿هَلَكَ﴾</span>. والعلة: هاء السكت يمتنع فيها الإدغام في هذا الوجه.</span></p></div>
+        <div class="opt"><span class="bl">ب.</span><p><b>الإدغام</b>، جرياً على القاعدة العامة: الأول ساكن والثاني متحرك.</p></div>
+      </div>
+      <div class="verse">
+        <div class="src">قال الإمام ابن الجزري في «المقدمة الجزرية»:</div>
+        <div class="bayt">
+          <span>وَأَوَّلَيْ مِثْلٍ وَجِنْسٍ إِنْ سَكَنْ</span><span>أَدْغِمْ كَقُلْ رَبِّ وَبَلْ لَا وَأَبِنْ</span>
+          <span>فِي يَوْمِ مَعْ قَالُوا وَهُمْ وَقُلْ نَعَمْ</span><span>سَبِّحْهُ لَا تُزِغْ قُلُوبَ فَالْتَقَمْ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qism" id="m-k">
+    <div class="qism-head"><span class="name">٢. المِثلان الكبير</span><span class="motion"><i>متحرك</i><i>متحرك</i></span><span class="count">حكم واحد واستثناء</span></div>
+    <div class="qism-body">
+      <p class="note">سُمّي كبيراً لأن فيه عملين: تسكين الأول ثم إدغامه، عند بعض القراء غير حفص.</p>
+      <div class="hukm">
+        <div class="hukm-head"><span class="t">الإظهار</span><span class="c">لحفص</span></div>
+        <div class="hukm-body"><div class="ex"><span class="ay">﴿سَلَكَكُمْ﴾</span><span class="ay">﴿نَحْنُ نَقُصُّ﴾</span><span class="ay">﴿أَتُعِدَانِنِي﴾</span><span class="ay">﴿الْمَدِينَةِ تِسْعَةُ﴾</span></div></div>
+      </div>
+      <div class="ist">
+        <div class="ist-head"><span class="ist-tag">استثناء</span><span class="ay">﴿تَأْمَنَّا﴾</span><span class="note">[يوسف: ١١]، وأصلها (تأمنُنا)</span></div>
+        <p>الحكم: <span class="ik">وجهان</span></p>
+        <div class="opt"><span class="bl">أ.</span><p><b>الاختلاس (الإخفاء مع الروم)</b>، وهو المقدَّم: الإتيان ببعض الحركة بحيث يسمعه القريب دون البعيد، فينطق بثلثي ضمة النون ويذهب ثلثها.</p></div>
+        <div class="opt"><span class="bl">ب.</span><p><b>الإدغام مع الإشمام:</b> ضم الشفتين إلى الأمام كمن ينطق بالضم من غير إسماع صوت، بُعيد تسكين الحرف. فهو هيئة تُرى ولا تُسمع.</p></div>
+        <p class="note">ولا يُضبط هذان الوجهان إلا بالتلقي والمشافهة.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qism" id="m-m">
+    <div class="qism-head"><span class="name">٣. المِثلان المطلق</span><span class="motion"><i>متحرك</i><i class="s">ساكن</i></span><span class="count">حكم واحد</span></div>
+    <div class="qism-body">
+      <p class="note">سُمّي مطلقاً لاتفاق القراء على إظهاره.</p>
+      <div class="hukm">
+        <div class="hukm-head"><span class="t">الإظهار</span><span class="c">عند جميع القراء</span></div>
+        <div class="hukm-body"><div class="pairs">
+          <div><span class="k">النونان</span><span class="ay">﴿مَا نَنسَخْ﴾</span></div>
+          <div><span class="k">التاءان</span><span class="ay">﴿تَتْلُو﴾</span></div>
+          <div><span class="k">الدالان</span><span class="ay">﴿مَدَدْنَاهَا﴾</span></div>
+          <div><span class="k">السينان</span><span class="ay">﴿تَمْسَسْهُ﴾</span></div>
+          <div><span class="k">اللامان</span><span class="ay">﴿يَحْلِلْ﴾</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>تطبيقات من الكتاب</h3>
+    <div class="tbl-wrap"><table class="apps">
+      <thead><tr><th>الكلمة</th><th>الحرفان</th><th>العلاقة</th><th>الحكم</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ay">﴿كَانَت تَّأْتِيهِمْ﴾</span></td><td>التاء الأولى ساكنة، والثانية متحركة</td><td>مثلان صغير</td><td><span class="hk">إدغام كامل</span></td></tr>
+        <tr><td><span class="ay">﴿مَّنَاسِكَكُمْ﴾</span></td><td>الكافان متحركتان</td><td>مثلان كبير</td><td><span class="hk">إظهار</span></td></tr>
+        <tr><td><span class="ay">﴿وَلَا تُشْطِطْ﴾</span></td><td>الطاء الأولى متحركة، والثانية ساكنة</td><td>مثلان مطلق</td><td><span class="hk">إظهار</span></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="wrapup" data-lesson="mithlan">
+    <h3>خلاصة المِثلين</h3>
+    <ul>
+      <li>الصغير يُدغم، إلا إذا كان الأول حرف مد فيُظهر، أو هاء سكت ففيه وجهان.</li>
+      <li>الكبير يُظهر لحفص، إلا ﴿تَأْمَنَّا﴾ ففيها الاختلاس أو الإشمام.</li>
+      <li>المطلق يُظهر عند الجميع.</li>
+    </ul>
+    <div class="acts"><button class="btn" type="button" data-done="mithlan">أنهيت هذا الدرس</button><button class="btn ghost" type="button" data-quiz="0">اختبر نفسك في المِثلين</button></div>
+  </div>
+</section>
+
+<!-- =================== المتجانسان =================== -->
+<section class="panel" id="mutajanisan" role="tabpanel" aria-labelledby="t-mutajanisan" hidden>
+  <div class="block">
+    <h2>المتجانسان</h2>
+    <div class="def"><p><span class="lbl">التعريف:</span>الحرفان اللذان اتفقا في المخرج، واختلفا في الصفة.</p></div>
+  </div>
+
+  <nav class="map" aria-label="خريطة الدرس">
+    <a href="#j-s"><span class="mq">صغير</span><span class="mh">أربعة أحكام: إدغام، جواز، إخفاء شفوي، إظهار</span><span class="mi">استثناء: الطاء مع التاء إدغام ناقص</span></a>
+    <a href="#j-k"><span class="mq">كبير</span><span class="mh">الإظهار</span><span class="mi">بلا استثناء</span></a>
+    <a href="#j-m"><span class="mq">مطلق</span><span class="mh">الإظهار لجميع القراء</span><span class="mi">بلا استثناء</span></a>
+  </nav>
+
+  <div class="qism" id="j-s">
+    <div class="qism-head"><span class="name">١. المتجانسان الصغير</span><span class="motion"><i class="s">ساكن</i><i>متحرك</i></span><span class="count">أربعة أحكام</span></div>
+    <div class="qism-body">
+      <div class="hukm">
+        <div class="hukm-head"><span class="n">الحكم ١</span><span class="t">وجوب الإدغام</span><span class="c">في خمسة أزواج فقط</span></div>
+        <div class="hukm-body">
+          <div class="pairs one">
+            <div><span class="k">الدال مع التاء</span><span class="ay">﴿وَقَد تَّعْلَمُونَ﴾</span><span class="ay">﴿حَصَدتُّمْ﴾</span></div>
+            <div><span class="k">التاء مع الدال</span><span class="ay">﴿أَثْقَلَت دَّعَوَا﴾</span><span class="ay">﴿أُجِيبَت دَّعْوَتُكُمَا﴾</span></div>
+            <div><span class="k">الذال مع الظاء</span><span class="ay">﴿إِذ ظَّلَمُوا﴾</span><span class="ay">﴿إِذ ظَّلَمْتُمْ﴾</span></div>
+            <div><span class="k">التاء مع الطاء</span><span class="ay">﴿فَآمَنَت طَّائِفَةٌ﴾</span><span class="ay">﴿وَكَفَرَت طَّائِفَةٌ﴾</span></div>
+            <div><span class="k">الطاء مع التاء</span><span class="ay">﴿بَسَطتَ﴾</span><span class="ay">﴿فَرَّطتُ﴾</span><span class="ay">﴿فَرَّطتُمْ﴾</span><span class="ay">﴿أَحَطتُ﴾</span></div>
+          </div>
+          <p class="note">والإدغام في هذه الأزواج <b>كامل</b>.</p>
+          <div class="ist">
+            <div class="ist-head"><span class="ist-tag">استثناء</span><span class="c">الطاء مع التاء</span></div>
+            <p>الحكم: <span class="ik">إدغام ناقص</span>، لبقاء صفة الإطباق في الطاء.</p>
+            <p class="note"><b>العلة:</b> الحرف الضعيف يُدغم في القوي، ولا يُدغم القوي في الضعيف، والطاء أقوى الحروف. ولولا التجانس بين الطاء والتاء لما ساغ الإدغام. <b>الضبط:</b> تعرية الطاء، وعدم تشديد التاء.</p>
+          </div>
+        </div>
+      </div>
+      <div class="hukm">
+        <div class="hukm-head"><span class="n">الحكم ٢</span><span class="t">جواز الإدغام</span><span class="c">في موضعين</span></div>
+        <div class="hukm-body">
+          <div class="pairs one">
+            <div><span class="k">الثاء مع الذال</span><span class="ay">﴿يَلْهَث ذَّٰلِكَ﴾</span><span class="note">[الأعراف: ١٧٦]</span></div>
+            <div><span class="k">الباء مع الميم</span><span class="ay">﴿ارْكَب مَّعَنَا﴾</span><span class="note">[هود: ٤٢]</span></div>
+          </div>
+          <p class="note">الجواز هنا لاختلاف القراء بين الإظهار والإدغام. <b>ولحفص من الشاطبية الإدغام فقط.</b></p>
+        </div>
+      </div>
+      <div class="hukm">
+        <div class="hukm-head"><span class="n">الحكم ٣</span><span class="t">الإخفاء الشفوي</span><span class="c">الميم الساكنة مع الباء</span></div>
+        <div class="hukm-body"><div class="ex"><span class="ay">﴿أَنبِئْهُم بِأَسْمَائِهِمْ﴾</span></div></div>
+      </div>
+      <div class="hukm">
+        <div class="hukm-head"><span class="n">الحكم ٤</span><span class="t">الإظهار</span><span class="c">وهو ما تبقى من الحروف</span></div>
+        <div class="hukm-body">
+          <div class="ex"><span class="ay">﴿أَقْرَرْتُمْ وَأَنتُمْ﴾</span><span class="ay">﴿أَشْيَاءَ﴾</span></div>
+          <p class="note"><b>تنبيه:</b> لا يُدغم حرف حلقي إذا جاء بعده حرف حلقي، كقوله: <span class="ay">﴿فَاصْفَحْ عَنْهُمْ﴾</span> <span class="ay">﴿فَسَبِّحْهُ﴾</span> <span class="ay">﴿وَاسْمَعْ غَيْرَ﴾</span> (من قصيدة اللالكائي).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qism" id="j-k">
+    <div class="qism-head"><span class="name">٢. المتجانسان الكبير</span><span class="motion"><i>متحرك</i><i>متحرك</i></span><span class="count">حكم واحد</span></div>
+    <div class="qism-body">
+      <div class="hukm">
+        <div class="hukm-head"><span class="t">وجوب الإظهار</span></div>
+        <div class="hukm-body"><div class="pairs">
+          <div><span class="k">الهمزة مع الهاء</span><span class="ay">﴿أَهَٰؤُلَاءِ﴾</span></div>
+          <div><span class="k">التاء مع الدال</span><span class="ay">﴿الْمُهْتَدِينَ﴾</span></div>
+          <div><span class="k">الباء مع الميم</span><span class="ay">﴿بِمَا أُنزِلَ﴾</span></div>
+          <div><span class="k">الواو مع الميم</span><span class="ay">﴿وَمَلَائِكَتُهُ﴾</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qism" id="j-m">
+    <div class="qism-head"><span class="name">٣. المتجانسان المطلق</span><span class="motion"><i>متحرك</i><i class="s">ساكن</i></span><span class="count">حكم واحد</span></div>
+    <div class="qism-body">
+      <div class="hukm">
+        <div class="hukm-head"><span class="t">وجوب الإظهار</span><span class="c">عند جميع القراء</span></div>
+        <div class="hukm-body"><div class="pairs">
+          <div><span class="k">الطاء مع التاء</span><span class="ay">﴿حَبِطَتْ﴾</span></div>
+          <div><span class="k">التاء مع الدال</span><span class="ay">﴿تَدْعُونَ﴾</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>تطبيقات من الكتاب</h3>
+    <div class="tbl-wrap"><table class="apps">
+      <thead><tr><th>الكلمة</th><th>الحرفان</th><th>العلاقة</th><th>الحكم</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ay">﴿وُلِدتُّ﴾</span></td><td>الدال ساكنة، وبعدها تاء متحركة</td><td>متجانسان صغير</td><td><span class="hk">إدغام كامل</span></td></tr>
+        <tr><td><span class="ay">﴿أُمَّهَاتُكُمْ وَبَنَاتُكُمْ﴾</span></td><td>الميم ساكنة، وبعدها واو متحركة</td><td>متجانسان صغير</td><td><span class="hk">إظهار</span></td></tr>
+        <tr><td><span class="ay">﴿يَجْعَلْ﴾</span></td><td>الياء متحركة، وبعدها جيم ساكنة</td><td>متجانسان مطلق</td><td><span class="hk">إظهار</span></td></tr>
+        <tr><td><span class="ay">﴿تُدِيرُونَهَا﴾</span></td><td>التاء متحركة، وبعدها دال متحركة</td><td>متجانسان كبير</td><td><span class="hk">إظهار</span></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="wrapup" data-lesson="mutajanisan">
+    <h3>خلاصة المتجانسين</h3>
+    <ul>
+      <li>الإدغام الواجب في خمسة أزواج فقط: (د ت)، (ت د)، (ذ ظ)، (ت ط)، (ط ت). كلها كامل إلا (ط ت) فناقص.</li>
+      <li>الجواز في ﴿يَلْهَث ذَّٰلِكَ﴾ و﴿ارْكَب مَّعَنَا﴾، ولحفص الإدغام.</li>
+      <li>الميم مع الباء إخفاء شفوي، وما بقي إظهار.</li>
+    </ul>
+    <div class="acts"><button class="btn" type="button" data-done="mutajanisan">أنهيت هذا الدرس</button><button class="btn ghost" type="button" data-quiz="1">اختبر نفسك في المتجانسين</button></div>
+  </div>
+</section>
+
+<!-- =================== المتقاربان =================== -->
+<section class="panel" id="mutaqariban" role="tabpanel" aria-labelledby="t-mutaqariban" hidden>
+  <div class="block">
+    <h2>المتقاربان</h2>
+    <div class="def">
+      <p><span class="lbl">التعريف:</span>الحرفان اللذان تقاربا مخرجاً أو صفة.</p>
+      <p class="alt">قد يكون التقارب في المخرج دون الصفة، وقد يكون في الصفة دون المخرج. <b>والضابط:</b> كل ما جاز فيه الإدغام ولم يكن من المثلين أو المتجانسين فهو من المتقاربين.</p>
+    </div>
+  </div>
+
+  <nav class="map" aria-label="خريطة الدرس">
+    <a href="#q-s"><span class="mq">صغير</span><span class="mh">أربعة أحكام: إدغام، إخفاء، إقلاب، إظهار</span><span class="mi">استثناءات في الإدغام: السكت، الكلمة الواحدة، الرواية</span></a>
+    <a href="#q-k"><span class="mq">كبير</span><span class="mh">الإظهار</span><span class="mi">بلا استثناء</span></a>
+    <a href="#q-m"><span class="mq">مطلق</span><span class="mh">الإظهار لجميع القراء</span><span class="mi">بلا استثناء</span></a>
+  </nav>
+
+  <div class="qism" id="q-s">
+    <div class="qism-head"><span class="name">١. المتقاربان الصغير</span><span class="motion"><i class="s">ساكن</i><i>متحرك</i></span><span class="count">أربعة أحكام</span></div>
+    <div class="qism-body">
+      <div class="hukm">
+        <div class="hukm-head"><span class="n">الحكم ١</span><span class="t">وجوب الإدغام</span><span class="c">في أربع حالات</span></div>
+        <div class="hukm-body">
+          <p class="sub-t">أ) اللام الساكنة في الراء، إدغاماً كاملاً</p>
+          <div class="ex"><span class="ay">﴿وَقُل رَّبِّ زِدْنِي عِلْمًا﴾</span><span class="ay">﴿بَل رَّفَعَهُ اللَّهُ إِلَيْهِ﴾</span></div>
+          <div class="ist">
+            <div class="ist-head"><span class="ist-tag">استثناء</span><span class="ay">﴿كَلَّاۖ بَلْۜ رَانَ﴾</span></div>
+            <p>الحكم: <span class="ik">السكت مع الإظهار</span>، لوجوب السكت على اللام.</p>
+          </div>
+
+          <p class="sub-t">ب) القاف الساكنة في الكاف</p>
+          <p>في قوله تعالى: <span class="ay">﴿أَلَمْ نَخْلُقكُّم﴾</span> <span class="note">[المرسلات: ٢٠]</span>، تُدغم القاف في الكاف إدغاماً كاملاً، وتُنطق كافاً محضة.</p>
+
+          <p class="sub-t">ج) النون الساكنة في حروف (يرملو)</p>
+          <div class="ex"><span class="ay">﴿إِن يَقُولُونَ﴾</span><span class="ay">﴿مِن رَّبِّكَ﴾</span><span class="ay">﴿مِن مَّالٍ﴾</span><span class="ay">﴿مِن لَّدُنِّي﴾</span><span class="ay">﴿إِيمَانًا وَتَسْلِيمًا﴾</span></div>
+          <p class="note">وأُدغمت النون في الميم في <span class="ay">﴿طسم﴾</span> [الشعراء: ١، القصص: ١].</p>
+          <div class="ist">
+            <div class="ist-head"><span class="ist-tag">استثناء ١</span><span class="c">بسبب السكت</span><span class="ay">﴿مَنْۜ رَاقٍ﴾</span></div>
+            <p>الحكم: <span class="ik">السكت مع الإظهار</span></p>
+          </div>
+          <div class="ist">
+            <div class="ist-head"><span class="ist-tag">استثناء ٢</span><span class="c">النون والحرف في كلمة واحدة</span></div>
+            <p>الحكم: <span class="ik">الإظهار المطلق</span></p>
+            <div class="ex"><span class="ay">﴿الدُّنْيَا﴾</span><span class="ay">﴿بُنْيَانٌ﴾</span><span class="ay">﴿قِنْوَانٌ﴾</span><span class="ay">﴿صِنْوَانٌ﴾</span></div>
+          </div>
+          <div class="ist">
+            <div class="ist-head"><span class="ist-tag">استثناء ٣</span><span class="c">بسبب الرواية</span></div>
+            <p>الحكم: <span class="ik">الإظهار</span> لحفص</p>
+            <div class="ex"><span class="ay">﴿يس (١) وَالْقُرْآنِ الْحَكِيمِ﴾</span><span class="ay">﴿نۚ وَالْقَلَمِ﴾</span></div>
+          </div>
+
+          <p class="sub-t">د) لام (أل) التعريف مع الحروف الشمسية، عدا اللام</p>
+          <div class="verse"><div class="src">مجموعة في أوائل كلمات هذا البيت من التحفة:</div><div class="bayt"><span>طِبْ ثُمَّ صِلْ رَحْمًا تَفُزْ ضِفْ ذَا نِعَمْ</span><span>دَعْ سُوءَ ظَنٍّ زُرْ شَرِيفًا لِلْكَرَمْ</span></div></div>
+          <div class="ex"><span class="ay">﴿الطَّيِّبَاتِ﴾</span><span class="ay">﴿التَّوَّابِ﴾</span><span class="ay">﴿لِلصَّابِرِينَ﴾</span></div>
+        </div>
+      </div>
+      <div class="hukm">
+        <div class="hukm-head"><span class="n">الحكم ٢</span><span class="t">وجوب الإخفاء</span><span class="c">النون مع حروف الإخفاء الحقيقي، عدا الكاف والقاف</span></div>
+        <div class="hukm-body">
+          <div class="ex"><span class="ay">﴿يَنصُرْكُمُ﴾</span><span class="ay">﴿مَن جَاءَ﴾</span><span class="ay">﴿نَفْسٌ شَيْئًا﴾</span></div>
+          <p class="note">النون مع الكاف والقاف متباعدان، وتجدها في درس المتباعدين.</p>
+        </div>
+      </div>
+      <div class="hukm">
+        <div class="hukm-head"><span class="n">الحكم ٣</span><span class="t">وجوب الإقلاب</span><span class="c">النون مع الباء</span></div>
+        <div class="hukm-body"><div class="ex"><span class="ay">﴿الْأَنبِيَاءَ﴾</span><span class="ay">﴿هَنِيئًا بِمَا﴾</span></div></div>
+      </div>
+      <div class="hukm">
+        <div class="hukm-head"><span class="n">الحكم ٤</span><span class="t">وجوب الإظهار</span><span class="c">في بقية الحروف</span></div>
+        <div class="hukm-body">
+          <div class="ex"><span class="ay">﴿لَهُمْ فِيهَا﴾</span><span class="ay">﴿يَغْفِرْ لَكُمْ﴾</span><span class="ay">﴿يَفْعَلْ ذَٰلِكَ﴾</span><span class="ay">﴿اتَّخَذْتُمُ﴾</span><span class="ay">﴿لَبِثْتَ﴾</span><span class="ay">﴿إِذْ جَعَلَ﴾</span><span class="ay">﴿قَدْ سَمِعَ﴾</span><span class="ay">﴿فَقَدْ ضَلَّ﴾</span><span class="ay">﴿قَدْ جَمَعُوا﴾</span><span class="ay">﴿وَجَبَتْ جُنُوبُهَا﴾</span><span class="ay">﴿أَنبَتَتْ سَبْعَ﴾</span><span class="ay">﴿بَلْ زُيِّنَ﴾</span></div>
+          <p class="note">يدغم بعضَها بعضُ القراء، أما حفص فيظهرها.</p>
+        </div>
+      </div>
+      <div class="verse">
+        <div class="src">قال الإمام أبو عمرو الداني:</div>
+        <div class="bayt"><span>وَمَا تَقَارَبَا إِذَا ادَّغَمْتَهُ</span><span>وَلَمْ تُبَقِّ صَوْتَهُ قَلَبْتَهُ</span><span>حَرْفًا صَحِيحًا كَالَّذِي يَلِيهِ</span><span>بِذَا يَصِحُّ الْإِدْغَامُ فِيهِ</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qism" id="q-k">
+    <div class="qism-head"><span class="name">٢. المتقاربان الكبير</span><span class="motion"><i>متحرك</i><i>متحرك</i></span><span class="count">حكم واحد</span></div>
+    <div class="qism-body">
+      <div class="hukm">
+        <div class="hukm-head"><span class="t">وجوب الإظهار</span></div>
+        <div class="hukm-body"><div class="pairs">
+          <div><span class="k">القاف مع الكاف</span><span class="ay">﴿خَلَقَكُمْ﴾</span></div>
+          <div><span class="k">اللام مع النون</span><span class="ay">﴿لَنَا﴾</span></div>
+          <div><span class="k">اللام مع الراء</span><span class="ay">﴿لِرَبِّهِمْ﴾</span></div>
+          <div><span class="k">النون مع الراء</span><span class="ay">﴿يَقُولُونَ رَبَّنَا﴾</span></div>
+          <div><span class="k">التاء مع الذال</span><span class="ay">﴿يَتَذَكَّرُونَ﴾</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qism" id="q-m">
+    <div class="qism-head"><span class="name">٣. المتقاربان المطلق</span><span class="motion"><i>متحرك</i><i class="s">ساكن</i></span><span class="count">حكم واحد</span></div>
+    <div class="qism-body">
+      <div class="hukm">
+        <div class="hukm-head"><span class="t">وجوب الإظهار</span><span class="c">عند جميع القراء</span></div>
+        <div class="hukm-body"><div class="pairs">
+          <div><span class="k">الهمزة مع الحاء</span><span class="ay">﴿أَحْمَدُ﴾</span></div>
+          <div><span class="k">الميم مع الفاء</span><span class="ay">﴿الْمُفْلِحُونَ﴾</span></div>
+          <div><span class="k">اللام مع النون</span><span class="ay">﴿فَلَنْ﴾</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>تطبيقات من الكتاب</h3>
+    <div class="tbl-wrap"><table class="apps">
+      <thead><tr><th>الكلمة</th><th>الحرفان</th><th>العلاقة</th><th>الحكم</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ay">﴿قُل رَّبِّ﴾</span></td><td>اللام ساكنة، وبعدها راء متحركة</td><td>متقاربان صغير</td><td><span class="hk">إدغام كامل</span></td></tr>
+        <tr><td><span class="ay">﴿مِن رَّبِّكَ﴾</span></td><td>النون ساكنة، وبعدها راء متحركة</td><td>متقاربان صغير</td><td><span class="hk">إدغام كامل</span></td></tr>
+        <tr><td><span class="ay">﴿جَعَلْنَا﴾</span></td><td>اللام ساكنة، وبعدها نون متحركة</td><td>متقاربان صغير</td><td><span class="hk">إظهار</span></td></tr>
+        <tr><td><span class="ay">﴿ذَٰلِكَ قَوَامًا﴾</span></td><td>الكاف متحركة، وبعدها قاف متحركة</td><td>متقاربان كبير</td><td><span class="hk">إظهار</span></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="wrapup" data-lesson="mutaqariban">
+    <h3>خلاصة المتقاربين</h3>
+    <ul>
+      <li>الإدغام في: اللام في الراء، والقاف في الكاف ﴿نَخْلُقكُّم﴾، والنون في (يرملو)، ولام أل في الحروف الشمسية.</li>
+      <li>استثناءات الإدغام: السكت (﴿بَلْ رَانَ﴾ ﴿مَنْ رَاقٍ﴾)، والكلمة الواحدة (﴿الدُّنْيَا﴾)، والرواية (﴿يس﴾ ﴿ن﴾).</li>
+      <li>النون: إخفاء مع حروف الإخفاء (عدا ك ق)، وإقلاب مع الباء. وما بقي إظهار.</li>
+    </ul>
+    <div class="acts"><button class="btn" type="button" data-done="mutaqariban">أنهيت هذا الدرس</button><button class="btn ghost" type="button" data-quiz="2">اختبر نفسك في المتقاربين</button></div>
+  </div>
+</section>
+
+<!-- =================== المتباعدان =================== -->
+<section class="panel" id="mutabaidan" role="tabpanel" aria-labelledby="t-mutabaidan" hidden>
+  <div class="block">
+    <h2>المتباعدان</h2>
+    <div class="def">
+      <p><span class="lbl">التعريف:</span>الحرفان اللذان تباعدا مخرجاً، واختلفا صفة.</p>
+      <p class="alt"><b>حدّ التباعد:</b> أن يفصل بين مخرجيهما مخرجٌ أو أكثر.</p>
+    </div>
+  </div>
+
+  <nav class="map" aria-label="خريطة الدرس">
+    <a href="#b-s"><span class="mq">صغير</span><span class="mh">حكمان: الإظهار، والإخفاء</span><span class="mi">بلا استثناء</span></a>
+    <a href="#b-k"><span class="mq">كبير</span><span class="mh">الإظهار</span><span class="mi">بلا استثناء</span></a>
+    <a href="#b-m"><span class="mq">مطلق</span><span class="mh">الإظهار لجميع القراء</span><span class="mi">بلا استثناء</span></a>
+  </nav>
+
+  <div class="qism" id="b-s">
+    <div class="qism-head"><span class="name">١. المتباعدان الصغير</span><span class="motion"><i class="s">ساكن</i><i>متحرك</i></span><span class="count">حكمان</span></div>
+    <div class="qism-body">
+      <div class="hukm">
+        <div class="hukm-head"><span class="n">الحكم ١</span><span class="t">وجوب الإظهار</span><span class="c">وهو الأصل في المتباعدين</span></div>
+        <div class="hukm-body"><div class="ex"><span class="ay">﴿مِنْ أَحَدٍ﴾</span><span class="ay">﴿مِنْهُ﴾</span><span class="ay">﴿وَخَيْرٌ أَمَلًا﴾</span></div></div>
+      </div>
+      <div class="hukm">
+        <div class="hukm-head"><span class="n">الحكم ٢</span><span class="t">الإخفاء</span><span class="c">النون الساكنة أو التنوين مع الكاف والقاف</span></div>
+        <div class="hukm-body"><div class="ex"><span class="ay">﴿وَأَجْرٌ كَبِيرٌ﴾</span><span class="ay">﴿مِن قَبْلِهِمْ﴾</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qism" id="b-k">
+    <div class="qism-head"><span class="name">٢. المتباعدان الكبير</span><span class="motion"><i>متحرك</i><i>متحرك</i></span><span class="count">حكم واحد</span></div>
+    <div class="qism-body">
+      <div class="hukm">
+        <div class="hukm-head"><span class="t">الإظهار</span></div>
+        <div class="hukm-body"><div class="ex"><span class="ay">﴿قَوَامًا﴾</span><span class="ay">﴿لِأَحَدٍ﴾</span><span class="note">(اللام مع الهمزة، والحاء مع الدال)</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qism" id="b-m">
+    <div class="qism-head"><span class="name">٣. المتباعدان المطلق</span><span class="motion"><i>متحرك</i><i class="s">ساكن</i></span><span class="count">حكم واحد</span></div>
+    <div class="qism-body">
+      <div class="hukm">
+        <div class="hukm-head"><span class="t">الإظهار</span><span class="c">عند جميع القراء</span></div>
+        <div class="hukm-body"><div class="ex"><span class="ay">﴿وَقْرًا﴾</span><span class="ay">﴿لَرَفَعْنَاهُ﴾</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ist">
+    <div class="ist-head"><span class="ist-tag">ملحوظة</span><span class="c">حروف المد</span></div>
+    <p>حروف المد مع غيرها لا توصف بالتجانس ولا بالتقارب ولا بالتباعد، لأن مخرجها مقدَّر. (تفصيلها في درس الموانع.)</p>
+  </div>
+
+  <div class="block">
+    <h3>تطبيقات من الكتاب</h3>
+    <div class="tbl-wrap"><table class="apps">
+      <thead><tr><th>الكلمة</th><th>الحرفان</th><th>العلاقة</th><th>الحكم</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ay">﴿مِنْ خَيْرٍ﴾</span></td><td>النون مع الخاء</td><td>متباعدان صغير</td><td><span class="hk">إظهار</span></td></tr>
+        <tr><td><span class="ay">﴿كَبِيرٌ﴾</span></td><td>الكاف مع الباء</td><td>متباعدان كبير</td><td><span class="hk">إظهار</span></td></tr>
+        <tr><td><span class="ay">﴿أَخْرَجَ﴾</span></td><td>الهمزة مع الخاء</td><td>متباعدان مطلق</td><td><span class="hk">إظهار</span></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="verse">
+    <div class="src">قال الإمام أبو عمرو الداني في «الأرجوزة المنبهة»:</div>
+    <div class="bayt"><span>وَأَنْ يَكُونَا مُتَبَاعِدَيْنِ</span><span>مُنْفَصِلَيْنِ مُتَبَايِنَيْنِ</span><span>فَذَاكَ لَا اخْتِلَافَ فِي إِظْهَارِهْ</span><span>وَالشَّيْءُ قَدْ يُعْرَفُ بِاشْتِهَارِهْ</span></div>
+  </div>
+
+  <div class="wrapup" data-lesson="mutabaidan">
+    <h3>خلاصة المتباعدين</h3>
+    <ul>
+      <li>الأصل الإظهار في الأقسام الثلاثة.</li>
+      <li>في الصغير حكم ثانٍ: إخفاء النون مع الكاف والقاف.</li>
+    </ul>
+    <div class="acts"><button class="btn" type="button" data-done="mutabaidan">أنهيت هذا الدرس</button><button class="btn ghost" type="button" data-quiz="3">اختبر نفسك في المتباعدين</button></div>
+  </div>
+</section>
+
+<!-- =================== الموانع =================== -->
+<section class="panel" id="mawani" role="tabpanel" aria-labelledby="t-mawani" hidden>
+  <div class="block">
+    <h2>موانع العلاقة بين الحروف</h2>
+    <div class="def"><p><span class="lbl">القاعدة:</span>العلاقة تكون بين الحرفين المتجاورين تماماً. فإذا فصل بينهما فاصل معتبر انقطعت العلاقة بينهما، وصارت العلاقة بين كل حرف وما يجاوره. وبعض ما يقع بين الحرفين لا يُعدّ فاصلاً، فتبقى العلاقة.</p></div>
+  </div>
+
+  <div class="two">
+    <div class="col stop">
+      <div class="col-head">ما يمنع العلاقة</div>
+      <ol>
+        <li>
+          <span class="t">أن يفصل بين الحرفين حرف ثابت رسماً ولفظاً، أو محذوف رسماً ثابت لفظاً</span>
+          <div class="ex"><span class="ay">﴿أَنْعَمْتَ﴾</span></div>
+          <p class="why">النون تمنع العلاقة بين الهمزة والعين.</p>
+          <div class="ex"><span class="ay">﴿نُـۨجِي﴾</span></div>
+          <p class="why">النون الصغيرة محذوفة رسماً ثابتة لفظاً، فتمنع العلاقة بين النون الأولى والجيم. والحروف المحذوفة رسماً الثابتة لفظاً تُعامل كالثابتة، ومثلها <span class="ay">﴿ذَٰلِكَ﴾</span>.</p>
+        </li>
+        <li>
+          <span class="t">الحرف الثابت وقفاً المحذوف وصلاً، وعلامته الصفر المستطيل</span>
+          <div class="ex"><span class="ay">﴿أَنَا۠ نَذِيرٌ﴾</span><span class="ay">﴿أَنَا۠ النَّذِيرُ﴾</span></div>
+          <p class="why">الألف ذات الصفر المستطيل تمنع العلاقة بين النون والنون. وكذلك الألفات السبع نحو <span class="ay">﴿قَوَارِيرَا۠﴾</span>، وما حُذف لالتقاء الساكنين نحو <span class="ay">﴿وَعَمِلُوا الصَّالِحَاتِ﴾</span>.</p>
+        </li>
+        <li>
+          <span class="t">حروف المد، إلا الواو مع الواو والياء مع الياء</span>
+          <p class="why">حرف المد يمنع علاقة ما قبله بما بعده، ولا يحمل علاقة مع أي حرف، إلا إذا التقى بمثله:</p>
+          <div class="ex"><span class="ay">﴿آمَنُوا وَعَمِلُوا﴾</span><span class="ay">﴿فِي يَوْمَيْنِ﴾</span></div>
+          <p class="rel-ans">فنقول: العلاقة تماثل صغير، والحكم الإظهار.</p>
+        </li>
+        <li>
+          <span class="t">التنوين يفصل ما قبله عما بعده</span>
+          <div class="ex"><span class="ay">﴿غَفُورٌ رَّحِيمٌ﴾</span><span class="ay">﴿سَمِيعٌ عَلِيمٌ﴾</span></div>
+          <p class="why">التنوين يمنع العلاقة بين الراء والراء في ﴿غَفُورٌ رَّحِيمٌ﴾، ولكن له علاقة مع ما بعده <b>وصلاً فقط</b>. فنون التنوين مع العين في ﴿سَمِيعٌ عَلِيمٌ﴾ متباعدان صغير، حكمه الإظهار.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="col go">
+      <div class="col-head">ما لا يمنع العلاقة</div>
+      <ol>
+        <li>
+          <span class="t">الصلة الصغرى أو الكبرى، لضعفها</span>
+          <div class="ex"><span class="ay">﴿إِنَّهُ هُوَ﴾</span></div>
+          <p class="rel-ans">الهاء مع الهاء: مثلان كبير، والحكم الإظهار.</p>
+        </li>
+        <li>
+          <span class="t">الصفر المستدير على الألف والواو والياء</span>
+          <div class="ex"><span class="ay">﴿وَمَلَإِي۟هِۦ﴾</span><span class="ay">﴿وَأُو۟لَٰتُ﴾</span><span class="ay">﴿مِا۟ئَةَ﴾</span></div>
+          <p class="why">الحرف المتروك لفظاً لا رسماً لا يفصل ما قبله عما بعده.</p>
+          <p class="rel-ans">في ﴿وَمَلَإِي۟هِۦ﴾: الهمزة مع الهاء متجانسان كبير، والحكم الإظهار.</p>
+        </li>
+        <li>
+          <span class="t">همزة الوصل، وتثبت العلاقة بينها وبين ما بعدها ابتداءً</span>
+          <div class="ex"><span class="ay">﴿إِنِ ارْتَبْتُمْ﴾</span><span class="ay">﴿وَلَٰكِنِ انظُرْ﴾</span></div>
+          <p class="rel-ans">وصلاً: النون مع الراء متقاربان مطلق. ابتداءً بـ﴿ارْتَبْتُمْ﴾: الهمزة مع الراء متباعدان مطلق. والحكم فيهما الإظهار.</p>
+          <p class="why">اعتُبرت الحركة العارضة في النون كالأصلية في العلاقات.</p>
+        </li>
+        <li>
+          <span class="t">السكت</span>
+          <div class="ex"><span class="ay">﴿مَنْۜ رَاقٍ﴾</span><span class="ay">﴿بَلْۜ رَانَ﴾</span><span class="ay">﴿مَالِيَهْۜ هَلَكَ﴾</span></div>
+          <p class="rel-ans">في ﴿مَنْ رَاقٍ﴾: النون مع الراء متقاربان صغير، والحكم السكت مع الإظهار.</p>
+        </li>
+        <li>
+          <span class="t">الحرف المشدد، سواء مع ما قبله أو ما بعده</span>
+          <div class="ex"><span class="ay">﴿اللَّهُمَّ مَالِكَ﴾</span><span class="ay">﴿مَسَّ سَقَرَ﴾</span></div>
+          <p class="rel-ans">الميم المشددة مع الميم: مثلان كبير، والحكم الإظهار.</p>
+          <p class="why">المشدد حرف ساكن ثم حرف متحرك، ويُعامل مع ما بعده كالحرف المتحرك.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3 style="color:var(--def)">أمثلة على ما لا يمنع العلاقة</h3>
+    <div class="tbl-wrap"><table class="ex-tbl go">
+      <thead><tr><th>#</th><th>المثال</th><th>التوضيح</th><th>العلاقة والحكم</th></tr></thead>
+      <tbody>
+        <tr><td class="n">١</td><td><span class="ay">﴿إِنَّهُ هُوَ﴾</span></td><td>الصلة لا تمنع العلاقة بين الهاءين.</td><td>مثلان كبير، والحكم: <span class="hk">الإظهار</span></td></tr>
+        <tr><td class="n">٢</td><td><span class="ay">﴿وَمَلَإِي۟هِۦ﴾</span> <span class="ay">﴿وَأُو۟لَٰتُ﴾</span> <span class="ay">﴿مِا۟ئَةَ﴾</span></td><td>الصفر المستدير لا يفصل ما قبله عما بعده.</td><td>في ﴿وَمَلَإِي۟هِۦ﴾: الهمزة مع الهاء متجانسان، والحكم: <span class="hk">الإظهار</span></td></tr>
+        <tr><td class="n">٣</td><td><span class="ctx">وصلاً</span><span class="ay">﴿إِنِ ارْتَبْتُمْ﴾</span><span class="ctx">وعند الابتداء</span><span class="ay">﴿ارْتَبْتُمْ﴾</span></td><td>همزة الوصل لا تفصل ما قبلها عما بعدها، وتثبت العلاقة بينها وبين ما بعدها ابتداءً.</td><td>وصلاً: النون مع الراء <b>متقاربان مطلق</b>.<br>ابتداءً: الهمزة مع الراء <b>متباعدان مطلق</b>.<br>والحكم فيهما: <span class="hk">الإظهار</span></td></tr>
+        <tr><td class="n">٤</td><td><span class="ay">﴿مَنْۜ رَاقٍ﴾</span></td><td>السكت لا يمنع العلاقة.</td><td>متقاربان صغير، والحكم: <span class="hk">الإظهار مع السكت</span></td></tr>
+        <tr><td class="n">٥</td><td><span class="ay">﴿اللَّهُمَّ مَالِكَ﴾</span></td><td>المشدد لا يمنع العلاقة، ويُعامل كالحرف المتحرك.</td><td>مثلان كبير، والحكم: <span class="hk">الإظهار</span></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="block">
+    <h3 style="color:var(--ist)">أمثلة على موانع العلاقة</h3>
+    <div class="tbl-wrap"><table class="ex-tbl stop">
+      <thead><tr><th>#</th><th>المثال</th><th>المانع</th><th>العلاقة والحكم</th></tr></thead>
+      <tbody>
+        <tr><td class="n">١</td><td><span class="ay">﴿أَنْعَمْتَ﴾</span></td><td>النون تمنع العلاقة بين الهمزة والعين.</td><td class="muted">لا علاقة بين الهمزة والعين</td></tr>
+        <tr><td class="n">٢</td><td><span class="ay">﴿نُـۨجِي﴾</span></td><td>النون المحذوفة رسماً الثابتة لفظاً تمنع العلاقة بين النون الأولى والجيم.</td><td class="muted">لا علاقة بين النون الأولى والجيم</td></tr>
+        <tr><td class="n">٣</td><td><span class="ay">﴿أَنَا۠ نَذِيرٌ﴾</span> <span class="ay">﴿أَنَا۠ النَّذِيرُ﴾</span></td><td>الصفر المستطيل يمنع العلاقة بين النون والنون.</td><td class="muted">لا علاقة بين النونين</td></tr>
+        <tr><td class="n">٤</td><td><span class="ay">﴿آمَنُوا وَعَمِلُوا﴾</span> <span class="ay">﴿فِي يَوْمَيْنِ﴾</span></td><td>حرف المد لا يحمل علاقة إلا مع مثله: الواو مع الواو، والياء مع الياء.</td><td>مثلان صغير، والحكم: <span class="hk">الإظهار</span></td></tr>
+        <tr><td class="n">٥</td><td><span class="ay">﴿غَفُورٌ رَّحِيمٌ﴾</span></td><td>التنوين يمنع العلاقة بين الراء والراء.</td><td class="muted">العلاقة بين نون التنوين والراء وصلاً</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ist">
+      <div class="ist-head"><span class="ist-tag">قاعدة</span><span class="c">حروف المد</span></div>
+      <p>حروف المد تمنع علاقة ما قبلها مع ما بعدها، ولا تحمل علاقة مع أي حرف، إلا إذا التقت الواو مع الواو، أو الياء مع الياء: <span class="ay">﴿آمَنُوا وَعَمِلُوا﴾</span> <span class="ay">﴿فِي يَوْمَيْنِ﴾</span></p>
+      <p>فنقول: العلاقة <b>تماثل صغير</b>، والحكم <span class="hk">الإظهار</span>.</p>
+    </div>
+  </div>
+
+  <div class="block" id="mawani-idgham">
+    <h3 style="color:var(--ist)">موانع الإدغام</h3>
+    <p class="note">حالات يجتمع فيها سبب الإدغام، ومع ذلك يمتنع الإدغام ويُظهر الحرف. وأكثرها مجموع في قول ابن الجزري:</p>
+    <div class="verse"><div class="bayt">
+      <span>وَأَوَّلَيْ مِثْلٍ وَجِنْسٍ إِنْ سَكَنْ</span><span>أَدْغِمْ كَقُلْ رَبِّ وَبَلْ لَا وَأَبِنْ</span>
+      <span>فِي يَوْمِ مَعْ قَالُوا وَهُمْ وَقُلْ نَعَمْ</span><span>سَبِّحْهُ لَا تُزِغْ قُلُوبَ فَالْتَقَمْ</span>
+    </div></div>
+    <div class="tbl-wrap"><table class="ex-tbl stop">
+      <thead><tr><th>#</th><th>المانع</th><th>أمثلة</th><th>التعليل والحكم</th></tr></thead>
+      <tbody>
+        <tr><td class="n">١</td><td><b>أن يكون الحرف الأول حرف مد</b></td><td><span class="ay">﴿آمَنُوا وَعَمِلُوا﴾</span> <span class="ay">﴿فِي يَوْمَيْنِ﴾</span></td><td>لئلا يذهب المد بالإدغام. الحكم: <span class="hk">الإظهار</span></td></tr>
+        <tr><td class="n">٢</td><td><b>أن يكون على الحرف الأول سكت</b></td><td><span class="ay">﴿بَلْۜ رَانَ﴾</span> <span class="ay">﴿مَنْۜ رَاقٍ﴾</span></td><td>لأن السكت يوجب الإظهار ويمنع الإدغام. الحكم: <span class="hk">السكت مع الإظهار</span></td></tr>
+        <tr><td class="n">٣</td><td><b>الوقف</b></td><td class="muted">الوقف على الحرف الأول</td><td>لأن الإدغام يكون وصلاً، والوقف يمنع الحكم.</td></tr>
+        <tr><td class="n">٤</td><td><b>الإظهار المطلق</b><span class="ctx">النون الساكنة مع الواو أو الياء في كلمة واحدة</span></td><td><span class="ay">﴿قِنْوَانٌ﴾</span> <span class="ay">﴿صِنْوَانٌ﴾</span> <span class="ay">﴿بُنْيَانٌ﴾</span> <span class="ay">﴿الدُّنْيَا﴾</span></td><td>الحكم: <span class="hk">الإظهار المطلق</span></td></tr>
+        <tr><td class="n">٥</td><td><b>﴿قُلْ نَعَمْ﴾</b><span class="ctx">اللام مع النون: متقاربان صغير</span></td><td><span class="ay">﴿قُلْ نَعَمْ﴾</span></td><td>حتى لا يحصل فيها إجحاف. الحكم: <span class="hk">الإظهار</span></td></tr>
+        <tr><td class="n">٦</td><td><b>﴿فَالْتَقَمَهُ﴾</b><span class="ctx">اللام مع التاء: متقاربان صغير</span></td><td><span class="ay">﴿فَالْتَقَمَهُ﴾</span></td><td>اللام أصلية، فهما متقاربان. وامتنع الإدغام لأنه لا يُقاس على إدغام لام التعريف في التاء نحو ﴿التَّوَّابِ﴾. الحكم: <span class="hk">الإظهار</span></td></tr>
+        <tr><td class="n">٧</td><td><b>﴿فَسَبِّحْهُ﴾</b><span class="ctx">الحاء مع الهاء: تقارب في المخرج</span></td><td><span class="ay">﴿فَسَبِّحْهُ﴾</span></td><td>امتنع الإدغام لأن حروف الحلق لا تُدغم إلا في مثلها. الحكم: <span class="hk">الإظهار</span></td></tr>
+        <tr><td class="n">٨</td><td><b>﴿لَا تُزِغْ قُلُوبَنَا﴾</b><span class="ctx">الغين مع القاف: تقارب نسبي في المخرج</span></td><td><span class="ay">﴿لَا تُزِغْ قُلُوبَنَا﴾</span></td><td>الحكم: <span class="hk">الإظهار</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="ist">
+      <div class="ist-head"><span class="ist-tag">ملاحظة جانبية</span></div>
+      <p><b>حروف الحلق التي أُدغمت في مثلها حرفان:</b> العين نحو <span class="ay">﴿تَسْتَطِع عَّلَيْهِ﴾</span>، والهاء في <span class="ay">﴿يُكْرِههُّنَّ﴾</span>.</p>
+      <p><b>والحروف التي أُدغمت مع الباء حرفان:</b> <span class="ay">﴿اضْرِب بِّعَصَاكَ﴾</span> و<span class="ay">﴿ارْكَب مَّعَنَا﴾</span>.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>تنبيهات أخرى من الكتاب</h3>
+    <div class="tbl-wrap"><table class="apps">
+      <thead><tr><th>الحالة</th><th>القاعدة</th><th>مثال</th></tr></thead>
+      <tbody>
+        <tr><td><b>التاء المربوطة</b></td><td>تُعامل في الوصل تاءً، وفي الوقف هاءً.</td><td><span class="ay">﴿السَّاعَةَ تَكُونُ﴾</span><span class="note" style="display:block">وصلاً: العين مع التاء متباعدان كبير. وقفاً: العين مع الهاء متقاربان مطلق.</span></td></tr>
+        <tr><td><b>الحروف المقطعة</b></td><td>بينها علاقة في فواتح السور، لأنها مفصولة حكماً وإن اتصلت رسماً.</td><td><span class="ay">﴿طسم﴾</span><span class="note" style="display:block">نون السين مع الميم: متقاربان صغير، حكمه الإدغام.</span></td></tr>
+        <tr><td><b>الحرف المتروك له بدل</b></td><td>يُعوَّل في العلاقة على الحرف الملحق، لا على البدل.</td><td><span class="ay">﴿الصَّلَاةَ﴾</span> <span class="ay">﴿الرِّبَا﴾</span> <span class="ay">﴿التَّوْرَاةَ﴾</span><span class="note" style="display:block">العلاقة فيها مع الألف.</span></td></tr>
+        <tr><td><b>السين فوق الصاد</b></td><td>تدل على أن العلاقة مع السين لا الصاد.</td><td><span class="ay">﴿وَيَبْسُطُ﴾</span> <span class="ay">﴿بَسْطَةً﴾</span></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="wrapup" data-lesson="mawani">
+    <h3>خلاصة الموانع</h3>
+    <ul>
+      <li><b class="ik">يمنع:</b> حرف فاصل ملفوظ، والصفر المستطيل، وحرف المد (إلا و+و، ي+ي)، والتنوين.</li>
+      <li><b style="color:var(--def)">لا يمنع:</b> الصلة، والصفر المستدير، وهمزة الوصل، والسكت، والمشدد.</li>
+      <li><b class="ik">موانع الإدغام (٨):</b> حرف المد، والسكت، والوقف، والإظهار المطلق، و﴿قُلْ نَعَمْ﴾، و﴿فَالْتَقَمَهُ﴾، و﴿فَسَبِّحْهُ﴾، و﴿لَا تُزِغْ قُلُوبَنَا﴾.</li>
+    </ul>
+    <div class="acts"><button class="btn" type="button" data-done="mawani">أنهيت هذا الدرس</button><button class="btn ghost" type="button" data-quiz="4">اختبر نفسك في الموانع</button></div>
+  </div>
+</section>
+
+<!-- =================== تدريب =================== -->
+<section class="panel" id="tadrib" role="tabpanel" aria-labelledby="t-tadrib" hidden>
+  <div class="block">
+    <h2>تدريب</h2>
+    <p class="muted">حدّد نوع العلاقة وقسمها، ثم اضغط «تحقّق» لترى الحكم والشرح. الأمثلة من تطبيقات الكتاب وأسئلة التقويم.</p>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="quiz" id="quiz" aria-live="polite"></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="who">إعداد: رجاء يوسف</span>
+    <span>المرجع: منهاج الدارسين لترتيل الكتاب المبين، المستوى الثالث، الباب الأول (ص ١٦٩–١٨٨)، ومصطلحات ضبط المصحف (ص ٣٥٥–٣٥٨). الطبعة الثانية ١٤٤٨هـ. رواية حفص عن عاصم من طريق الشاطبية.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var LESSONS = [['madkhal','المدخل'],['mithlan','المِثلان'],['mutajanisan','المتجانسان'],['mutaqariban','المتقاربان'],['mutabaidan','المتباعدان'],['mawani','موانع العلاقة']];
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+  var ids = panels.map(function(p){return p.id});
+  function ar(n){ return String(n).replace(/\d/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[d];}); }
+
+  function show(id, scroll){
+    if(ids.indexOf(id) < 0) id = 'madkhal';
+    panels.forEach(function(p){ p.hidden = p.id !== id; });
+    tabs.forEach(function(t){
+      var on = t.dataset.panel === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      if(on){ try{ t.scrollIntoView({block:'nearest', inline:'nearest'}); }catch(e){} }
+    });
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+    if(scroll){
+      var nav = document.querySelector('nav.tabs');
+      var y = nav.getBoundingClientRect().top + window.scrollY;
+      if(window.scrollY > y) window.scrollTo({top:y});
+    }
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ show(t.dataset.panel, true); });
+    t.addEventListener('keydown', function(e){
+      var d = e.key === 'ArrowLeft' ? 1 : e.key === 'ArrowRight' ? -1 : 0;
+      if(!d) return; e.preventDefault();
+      var n = tabs[(i + d + tabs.length) % tabs.length]; n.focus(); show(n.dataset.panel, false);
+    });
+  });
+  document.addEventListener('click', function(e){
+    var g = e.target.closest('[data-go]'); if(g){ show(g.dataset.go, true); return; }
+    var q = e.target.closest('[data-quiz]'); if(q){ setFilter(+q.dataset.quiz); show('tadrib', true); return; }
+    var d = e.target.closest('[data-done]'); if(d){ toggleDone(d.dataset.done); return; }
+    var a = e.target.closest('.map a'); if(a){ e.preventDefault(); var t = document.querySelector(a.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+
+  /* ---------- Progress (kept in this browser only) ---------- */
+  var done = {};
+  try{ done = JSON.parse(localStorage.getItem('alaqat-done') || '{}') || {}; }catch(e){ done = {}; }
+  var CHEERS = ['بداية موفقة، تابع!','أحسنت، درس آخر يُضاف لرصيدك.','نصف الطريق، استمر.','ممتاز، اقتربت من الختام.','درس واحد ويكتمل الباب.','ما شاء الله! أتممت الباب كله. جرّب التدريب الشامل.'];
+  function count(){ return LESSONS.filter(function(l){return done[l[0]];}).length; }
+  function renderProgress(){
+    var c = count();
+    document.getElementById('prog-txt').textContent = 'أنجزت ' + ar(c) + ' من ' + ar(LESSONS.length) + ' دروس';
+    document.getElementById('prog-bar').style.width = (c / LESSONS.length * 100) + '%';
+    tabs.forEach(function(t){ t.classList.toggle('done', !!done[t.dataset.panel]); });
+    document.querySelectorAll('[data-done]').forEach(function(b){
+      var on = !!done[b.dataset.done];
+      b.classList.toggle('done', on);
+      b.textContent = on ? '✓ أنهيت هذا الدرس' : 'أنهيت هذا الدرس';
+    });
+    document.getElementById('plan').innerHTML = LESSONS.map(function(l){
+      return '<button type="button" data-go="'+l[0]+'" class="'+(done[l[0]]?'done':'')+'"><span class="dot"></span><span class="pn">'+l[1]+'</span></button>';
+    }).join('');
+  }
+  function toggleDone(id){
+    done[id] = !done[id];
+    try{ localStorage.setItem('alaqat-done', JSON.stringify(done)); }catch(e){}
+    renderProgress();
+    var box = document.querySelector('.wrapup[data-lesson="'+id+'"]');
+    var old = box.querySelector('.cheer'); if(old) old.remove();
+    if(done[id]){ var p = document.createElement('p'); p.className = 'cheer'; p.textContent = CHEERS[Math.max(0, Math.min(count(), CHEERS.length) - 1)]; box.appendChild(p); }
+  }
+  renderProgress();
+  show((location.hash || '').replace('#',''), false);
+
+  /* ---------- Quiz ---------- */
+  var RELS = ['مثلان','متجانسان','متقاربان','متباعدان'];
+  var QISM = ['صغير','كبير','مطلق'];
+  var TOPICS = ['المِثلان','المتجانسان','المتقاربان','المتباعدان','الموانع'];
+  // t = topic, r = relation, q = qism, c = context
+  var Q = [
+    {t:0,w:'﴿كَانَت تَّأْتِيهِمْ﴾',p:'التاء + التاء',r:0,q:0,h:'إدغام كامل',e:'التاء الأولى ساكنة والثانية متحركة.'},
+    {t:0,w:'﴿مَّنَاسِكَكُمْ﴾',p:'الكاف + الكاف',r:0,q:1,h:'الإظهار',e:'الكافان متحركتان، والمثلان الكبير حكمه الإظهار لحفص.'},
+    {t:0,w:'﴿وَلَا تُشْطِطْ﴾',p:'الطاء + الطاء',r:0,q:2,h:'الإظهار',e:'الطاء الأولى متحركة والثانية ساكنة، والمطلق يُظهر عند جميع القراء.'},
+    {t:0,w:'﴿الَّذِي يُوَسْوِسُ﴾',p:'الياء المدية + الياء',r:0,q:0,h:'الإظهار (استثناء)',e:'مثلان صغير، لكن الأول حرف مد، فيُظهر لئلا يذهب المد بالإدغام.'},
+    {t:0,w:'﴿مَالِيَهْۜ هَلَكَ﴾',p:'الهاء + الهاء',r:0,q:0,h:'وجهان: السكت مع الإظهار (المقدَّم)، والإدغام',e:'الأول هاء سكت، وهو من المستثنيات.'},
+    {t:0,w:'﴿كَم مِّن﴾',p:'الميم + الميم',r:0,q:0,h:'الإدغام',e:'الميم الأولى ساكنة والثانية متحركة.'},
+    {t:0,w:'﴿تَأْمَنَّا﴾',p:'النون + النون (أصلها تأمنُنا)',r:0,q:1,h:'وجهان: الاختلاس (المقدَّم)، والإدغام مع الإشمام',e:'المستثنى الوحيد من إظهار المثلين الكبير.'},
+    {t:1,w:'﴿فَرَّطتُمْ﴾',p:'الطاء + التاء',r:1,q:0,h:'إدغام ناقص (استثناء)',e:'اتفقا مخرجاً واختلفا صفة، والإدغام ناقص لبقاء الإطباق.'},
+    {t:1,w:'﴿وُلِدتُّ﴾',p:'الدال + التاء',r:1,q:0,h:'إدغام كامل',e:'الدال ساكنة وبعدها تاء متحركة، وهما من مخرج واحد.'},
+    {t:1,w:'﴿يَعْتَصِم بِاللَّهِ﴾',p:'الميم + الباء',r:1,q:0,h:'الإخفاء الشفوي',e:'الميم والباء من الشفتين، والميم ساكنة.'},
+    {t:1,w:'﴿يَلْهَث ذَّٰلِكَ﴾',p:'الثاء + الذال',r:1,q:0,h:'جواز الإدغام، ولحفص الإدغام',e:'اختلف القراء فيها، ولحفص من الشاطبية الإدغام فقط.'},
+    {t:1,w:'﴿يَجْعَلْ﴾',p:'الياء + الجيم',r:1,q:2,h:'الإظهار',e:'الياء متحركة والجيم ساكنة.'},
+    {t:1,w:'﴿تُدِيرُونَهَا﴾',p:'التاء + الدال',r:1,q:1,h:'الإظهار',e:'التاء متحركة والدال متحركة.'},
+    {t:1,w:'﴿أُمَّهَاتُكُمْ وَبَنَاتُكُمْ﴾',p:'الميم + الواو',r:1,q:0,h:'الإظهار',e:'الميم ساكنة وبعدها واو متحركة.'},
+    {t:2,w:'﴿مِن لَّدُنْهُ﴾',p:'النون + اللام',r:2,q:0,h:'إدغام كامل',e:'النون الساكنة تُدغم في حروف (يرملو).'},
+    {t:2,w:'﴿وَهُمْ فِيهَا﴾',p:'الميم + الفاء',r:2,q:0,h:'الإظهار',e:'الميم ساكنة وبعدها فاء.'},
+    {t:2,w:'﴿جَعَلْنَا﴾',p:'اللام + النون',r:2,q:0,h:'الإظهار',e:'اللام ساكنة وبعدها نون متحركة.'},
+    {t:2,w:'﴿نَخْلُقكُّم﴾',p:'القاف + الكاف',r:2,q:0,h:'إدغام كامل',e:'تُدغم القاف في الكاف، وتُنطق كافاً محضة.'},
+    {t:2,w:'﴿مَنْۜ رَاقٍ﴾',p:'النون + الراء',r:2,q:0,h:'السكت مع الإظهار (استثناء)',e:'الأصل الإدغام، لكن السكت يمنعه لحفص من الشاطبية.'},
+    {t:2,w:'﴿ذَٰلِكَ قَوَامًا﴾',p:'الكاف + القاف',r:2,q:1,h:'الإظهار',e:'الكاف متحركة والقاف متحركة.'},
+    {t:2,w:'﴿الدُّنْيَا﴾',p:'النون + الياء',r:2,q:0,h:'الإظهار المطلق (استثناء)',e:'النون والياء في كلمة واحدة، فلا تُدغم.'},
+    {t:3,w:'﴿مِنْ خَيْرٍ﴾',p:'النون + الخاء',r:3,q:0,h:'الإظهار',e:'النون من طرف اللسان والخاء من أدنى الحلق.'},
+    {t:3,w:'﴿كَبِيرٌ﴾',p:'الكاف + الباء',r:3,q:1,h:'الإظهار',e:'الكاف متحركة والباء متحركة.'},
+    {t:3,w:'﴿أَخْرَجَ﴾',p:'الهمزة + الخاء',r:3,q:2,h:'الإظهار',e:'الهمزة متحركة والخاء ساكنة.'},
+    {t:3,w:'﴿مِن قَبْلِهِمْ﴾',p:'النون + القاف',r:3,q:0,h:'الإخفاء',e:'الحكم الثاني للمتباعدين الصغير: النون مع الكاف والقاف.'},
+    {t:4,w:'﴿إِنَّهُ هُوَ﴾',p:'الهاء + الهاء',r:0,q:1,h:'الإظهار',e:'الصلة لا تمنع العلاقة لضعفها، والهاءان متحركتان.'},
+    {t:4,w:'﴿اللَّهُمَّ مَالِكَ﴾',p:'الميم المشددة + الميم',r:0,q:1,h:'الإظهار',e:'المشدد لا يمنع العلاقة، ويُعامل مع ما بعده كالمتحرك.'},
+    {t:4,w:'﴿آمَنُوا وَعَمِلُوا﴾',p:'الواو المدية + الواو',r:0,q:0,h:'الإظهار',e:'حرف المد لا يحمل علاقة إلا مع مثله، فهما مثلان صغير.'},
+    {t:4,w:'﴿إِنِ ارْتَبْتُمْ﴾',c:'وصلاً',p:'النون + الراء',r:2,q:2,h:'الإظهار',e:'همزة الوصل لا تفصل، والنون متحركة بحركة عارضة والراء ساكنة.'},
+    {t:4,w:'﴿ارْتَبْتُمْ﴾',c:'ابتداءً',p:'همزة الوصل + الراء',r:3,q:2,h:'الإظهار',e:'تثبت العلاقة بين همزة الوصل وما بعدها ابتداءً.'},
+    {t:4,w:'﴿وَمَلَإِي۟هِۦ﴾',p:'الهمزة + الهاء',r:1,q:1,h:'الإظهار',e:'الياء ذات الصفر المستدير لا تفصل بين الحرفين.'},
+    {t:4,w:'﴿غَفُورٌ رَّحِيمٌ﴾',p:'نون التنوين + الراء',r:2,q:0,h:'إدغام كامل',e:'التنوين يمنع العلاقة بين الراءين، وله علاقة مع ما بعده وصلاً.'},
+    {t:4,w:'﴿السَّاعَةَ تَكُونُ﴾',c:'وصلاً',p:'العين + التاء المربوطة',r:3,q:1,h:'الإظهار',e:'التاء المربوطة تُعامل في الوصل تاءً.'}
+  ];
+  var box = document.getElementById('quiz'), fbar = document.getElementById('filters');
+  var filter = -1, order, i, score, selR, selQ, checked;
+  function shuffle(a){ for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1));var t=a[k];a[k]=a[j];a[j]=t;} return a; }
+  function renderFilters(){
+    fbar.innerHTML = [['-1','الكل']].concat(TOPICS.map(function(t,k){return [String(k),t];})).map(function(f){
+      return '<button type="button" class="chip" data-f="'+f[0]+'" aria-pressed="'+(String(filter)===f[0])+'">'+f[1]+'</button>';
+    }).join('');
+    fbar.querySelectorAll('.chip').forEach(function(c){ c.addEventListener('click', function(){ setFilter(+c.dataset.f); }); });
+  }
+  function setFilter(f){ filter = f; renderFilters(); start(); }
+  function start(){
+    var pool = Q.map(function(_,k){return k;}).filter(function(k){ return filter < 0 || Q[k].t === filter; });
+    order = shuffle(pool).slice(0, 10); i = 0; score = 0; render();
+  }
+  function render(){
+    if(i >= order.length) return finish();
+    selR = null; selQ = null; checked = false;
+    var it = Q[order[i]];
+    box.innerHTML =
+      '<div class="qtop"><span>السؤال '+ar(i+1)+' من '+ar(order.length)+'</span><span>الصحيح: '+ar(score)+'</span></div>'+
+      '<div class="bar"><i style="width:'+(i/order.length*100)+'%"></i></div>'+
+      '<div class="qword">'+(it.c?'<span class="ctx">'+it.c+'</span>':'')+'<span class="ay">'+it.w+'</span><span class="pair">'+it.p+'</span></div>'+
+      '<div class="qgroup"><span class="q">نوع العلاقة</span><div class="opts" id="o-r">'+
+        RELS.map(function(t,k){return '<button class="opt" type="button" data-k="'+k+'" aria-pressed="false">'+t+'</button>';}).join('')+'</div></div>'+
+      '<div class="qgroup"><span class="q">القسم</span><div class="opts" id="o-q">'+
+        QISM.map(function(t,k){return '<button class="opt" type="button" data-k="'+k+'" aria-pressed="false">'+t+'</button>';}).join('')+'</div></div>'+
+      '<div id="fb"></div>'+
+      '<div class="qactions"><button class="btn" type="button" id="go" disabled>تحقّق</button></div>';
+    wire('o-r', function(k){ selR=k; });
+    wire('o-q', function(k){ selQ=k; });
+    document.getElementById('go').addEventListener('click', function(){ if(checked){ i++; render(); } else check(); });
+  }
+  function wire(id, set){
+    var g = document.getElementById(id);
+    g.querySelectorAll('.opt').forEach(function(b){
+      b.addEventListener('click', function(){
+        if(checked) return;
+        g.querySelectorAll('.opt').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+        b.setAttribute('aria-pressed','true'); set(+b.dataset.k);
+        document.getElementById('go').disabled = (selR === null || selQ === null);
+      });
+    });
+  }
+  function mark(id, right, chosen){
+    document.getElementById(id).querySelectorAll('.opt').forEach(function(b){
+      var k = +b.dataset.k; b.disabled = true; b.setAttribute('aria-pressed','false');
+      if(k === right) b.classList.add('right'); else if(k === chosen) b.classList.add('wrong');
+    });
+  }
+  var PRAISE = ['أحسنت!','إجابة صحيحة','بارك الله فيك','ممتاز'];
+  function check(){
+    var it = Q[order[i]], ok = selR === it.r && selQ === it.q;
+    if(ok) score++;
+    checked = true;
+    mark('o-r', it.r, selR); mark('o-q', it.q, selQ);
+    document.getElementById('fb').innerHTML =
+      '<div class="feedback"><span class="verdict '+(ok?'ok':'no')+'">'+(ok?PRAISE[i%PRAISE.length]:'الإجابة: '+RELS[it.r]+' '+QISM[it.q])+'</span>'+
+      '<div>الحكم: <span class="hk">'+it.h+'</span></div><div class="note">'+it.e+'</div></div>';
+    var go = document.getElementById('go');
+    go.textContent = i === order.length-1 ? 'النتيجة' : 'السؤال التالي';
+    go.focus();
+  }
+  function finish(){
+    var pct = score/order.length;
+    var msg = pct === 1 ? 'علامة كاملة! أتقنت هذا الجزء.' : pct >= .7 ? 'أداء جميل. راجع ما أخطأت فيه وأعد المحاولة.' : 'لا بأس، المراجعة طريق الإتقان. ارجع إلى الجدول الجامع ثم جرّب مرة أخرى.';
+    box.innerHTML = '<div class="done-box"><span class="big">'+ar(score)+' / '+ar(order.length)+'</span><p>'+msg+'</p><div class="acts"><button class="btn" type="button" id="again">تدريب جديد</button><button class="btn ghost" type="button" data-go="madkhal">إلى الجدول الجامع</button></div></div>';
+    document.getElementById('again').addEventListener('click', start);
+  }
+  renderFilters(); start();
+})();
+</script>
+
+</body>
+</html>
