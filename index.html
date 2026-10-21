@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="علاقات الحروف وموانعها من منهاج الدارسين: المثلان، المتجانسان، المتقاربان، المتباعدان، مع الأحكام والاستثناءات وتدريب تفاعلي. إعداد: رجاء يوسف.">
+<meta name="description" content="علاقات الحروف وموانعها من منهاج الدارسين: المثلان، المتجانسان، المتقاربان، المتباعدان، والروم والإشمام والاختلاس، مع الأحكام والاستثناءات وتدريب تفاعلي. إعداد: رجاء يوسف.">
 <style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
 <title>علاقات الحروف</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -165,6 +165,16 @@ table.apps td{font-size:15px}
 .ex-tbl.go thead th{background:var(--def-bg);color:var(--def)}
 .ex-tbl.stop thead th{background:var(--ist-bg);color:var(--ist)}
 .ex-tbl .ay{white-space:normal}
+table.cmp{min-width:520px}
+table.cmp td{font-size:15.5px;width:47%}
+table.cmp td.n{width:1%;font-family:var(--f-display);font-weight:700;color:var(--muted)}
+table.cmp thead th{font-size:18px;text-align:center}
+table.cmp thead th.a{background:var(--def-bg);color:var(--def)}
+table.cmp thead th.b{background:var(--hukm-bg);color:var(--hukm)}
+.defs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.defs .def{font-size:15.5px}
+.defs .def .lbl{display:block;font-size:19px}
+@media (max-width:680px){.defs{grid-template-columns:1fr}}
 .ex-tbl .ctx{display:block;font-size:13px;font-weight:700;color:var(--muted)}
 
 /* Intro pieces */
@@ -283,7 +293,7 @@ footer .who{font-family:var(--f-display);font-weight:600;color:var(--ink);font-s
         <span class="sw"><i style="background:var(--ist)"></i>استثناء / مانع</span>
         <span class="sw"><i style="background:var(--quran)"></i>مثال قرآني</span>
       </div>
-      <div class="progress"><span id="prog-txt">أنجزت ٠ من ٦ دروس</span><span class="track"><i id="prog-bar"></i></span></div>
+      <div class="progress"><span id="prog-txt">أنجزت ٠ من ٧ دروس</span><span class="track"><i id="prog-bar"></i></span></div>
     </div>
   </div>
 </header>
@@ -297,6 +307,7 @@ footer .who{font-family:var(--f-display);font-weight:600;color:var(--ink);font-s
       <button class="tab" role="tab" id="t-mutaqariban" data-panel="mutaqariban" aria-selected="false">المتقاربان<span class="tick">✓</span></button>
       <button class="tab" role="tab" id="t-mutabaidan" data-panel="mutabaidan" aria-selected="false">المتباعدان<span class="tick">✓</span></button>
       <button class="tab" role="tab" id="t-mawani" data-panel="mawani" aria-selected="false">موانع العلاقة<span class="tick">✓</span></button>
+      <button class="tab" role="tab" id="t-rawm" data-panel="rawm" aria-selected="false">الروم والإشمام<span class="tick">✓</span></button>
       <button class="tab" role="tab" id="t-tadrib" data-panel="tadrib" aria-selected="false">تدريب</button>
     </div>
   </div>
@@ -1019,6 +1030,71 @@ footer .who{font-family:var(--f-display);font-weight:600;color:var(--ink);font-s
   </div>
 </section>
 
+<!-- =================== الروم والإشمام والاختلاس =================== -->
+<section class="panel" id="rawm" role="tabpanel" aria-labelledby="t-rawm" hidden>
+  <div class="block">
+    <h2>الروم والإشمام والاختلاس</h2>
+    <p class="muted">ثلاثة مصطلحات متشابهة، تحتاجها لفهم وجهي ﴿تَأْمَنَّا﴾ في المثلين الكبير، وكيفيات الوقف على الكلمة.</p>
+  </div>
+
+  <div class="defs">
+    <div class="def"><p><span class="lbl">الرَّوْم</span>الإتيان ببعض الحركة بصوت خفي يسمعه القريب دون البعيد. ومقداره ثلث الحركة، ويكون في المرفوع بالضمة والمجرور بالكسرة.</p></div>
+    <div class="def"><p><span class="lbl">الإشمام</span>الإشارة بالشفتين كمن ينطق بالضم من غير صوت، بُعيد النطق بالحرف الأخير ساكناً. وهو هيئة تُرى ولا تُسمع، ويكون في المضموم فقط.</p></div>
+    <div class="def"><p><span class="lbl">الاختلاس</span>النطق بمعظم حركة الحرف، بحيث يبقى الأكثر ويذهب الأقل، ويُقدَّر بثلثي الحركة. كما في <span class="ay">﴿تَأْمَنَّا﴾</span> [يوسف: ١١].</p></div>
+  </div>
+
+  <div class="block">
+    <h3>مقارنة بين الروم والاختلاس</h3>
+    <div class="tbl-wrap"><table class="cmp">
+      <thead><tr><th>#</th><th class="a">الروم</th><th class="b">الاختلاس</th></tr></thead>
+      <tbody>
+        <tr><td class="n">١</td><td>الإتيان بثلث الحركة</td><td>الإتيان بثلثي الحركة</td></tr>
+        <tr><td class="n">٢</td><td>يأتي في آخر الكلمة، باستثناء كلمة <span class="ay">﴿تَأْمَنَّا﴾</span> أتى في وسط الكلمة</td><td>يأتي أول ووسط وآخر الكلمة</td></tr>
+        <tr><td class="n">٣</td><td>لا يكون إلا في الوقف</td><td>يكون في الوصل والوقف</td></tr>
+        <tr><td class="n">٤</td><td>لا يكون إلا في المكسور والمضموم الأصليين</td><td>يكون في جميع الحركات الثلاث</td></tr>
+        <tr><td class="n">٥</td><td>لا يأتي في الحروف</td><td>يأتي في الحروف</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="block">
+    <h3>مقارنة بين الروم والإشمام</h3>
+    <div class="tbl-wrap"><table class="cmp">
+      <thead><tr><th>#</th><th class="a">الروم</th><th class="b">الإشمام</th></tr></thead>
+      <tbody>
+        <tr><td class="n">١</td><td>يُسمع ولا يُرى</td><td>يُرى ولا يُسمع</td></tr>
+        <tr><td class="n">٢</td><td>يأتي مع الحركة</td><td>يكون بُعيد تسكين الحرف</td></tr>
+        <tr><td class="n">٣</td><td>يكون في الحرف المضموم والمكسور</td><td>يكون في الحرف المضموم فقط</td></tr>
+        <tr><td class="n">٤</td><td>يُعامل معاملة الوصل</td><td>يُعامل معاملة الوقف</td></tr>
+        <tr><td class="n">٥</td><td>الإتيان بثلث الحركة</td><td>عدم الإتيان بأي حركة، مع ضم الشفتين بُعيد إسكان الحرف</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="ist">
+    <div class="ist-head"><span class="ist-tag">تطبيق</span><span class="ay">﴿تَأْمَنَّا﴾</span><span class="note">[يوسف: ١١]</span></div>
+    <p>فيها وجهان: <b>الاختلاس</b> (المقدَّم)، وهو النطق بثلثي ضمة النون الأولى. و<b>الإدغام مع الإشمام</b>، وهو ضم الشفتين بُعيد إدغام النون الأولى في الثانية.</p>
+  </div>
+
+  <div class="verse">
+    <div class="src">قال الإمام الشاطبي في «حرز الأماني»:</div>
+    <div class="bayt">
+      <span>وَرَوْمُكَ إِسْمَاعُ الْمُحَرَّكِ وَاقِفًا</span><span>بِصَوْتٍ خَفِيٍّ كُلَّ دَانٍ تَنَوَّلَا</span>
+      <span>وَالِاشْمَامُ إِطْبَاقُ الشِّفَاهِ بُعَيْدَ مَا</span><span>يُسَكَّنُ لَا صَوْتٌ هُنَاكَ فَيَصْحَلَا</span>
+    </div>
+  </div>
+
+  <div class="wrapup" data-lesson="rawm">
+    <h3>خلاصة</h3>
+    <ul>
+      <li>الروم: ثلث الحركة، يُسمع، في الوقف، في المضموم والمكسور.</li>
+      <li>الاختلاس: ثلثا الحركة، في الوصل والوقف، في الحركات الثلاث.</li>
+      <li>الإشمام: لا صوت، يُرى، بُعيد التسكين، في المضموم فقط.</li>
+    </ul>
+    <div class="acts"><button class="btn" type="button" data-done="rawm">أنهيت هذا الدرس</button><button class="btn ghost" type="button" data-go="mithlan">ارجع إلى ﴿تَأْمَنَّا﴾ في المِثلين</button></div>
+  </div>
+</section>
+
 <!-- =================== تدريب =================== -->
 <section class="panel" id="tadrib" role="tabpanel" aria-labelledby="t-tadrib" hidden>
   <div class="block">
@@ -1034,13 +1110,13 @@ footer .who{font-family:var(--f-display);font-weight:600;color:var(--ink);font-s
 <footer>
   <div class="wrap">
     <span class="who">إعداد: رجاء يوسف</span>
-    <span>المرجع: منهاج الدارسين لترتيل الكتاب المبين، المستوى الثالث، الباب الأول (ص ١٦٩–١٨٨)، ومصطلحات ضبط المصحف (ص ٣٥٥–٣٥٨). الطبعة الثانية ١٤٤٨هـ. رواية حفص عن عاصم من طريق الشاطبية.</span>
+    <span>المرجع: منهاج الدارسين لترتيل الكتاب المبين، المستوى الثالث، الباب الأول (ص ١٦٩–١٨٨)، وكيفية الوقف على الكلمة (ص ٢٣٠–٢٣٣)، ومصطلحات ضبط المصحف (ص ٣٥٥–٣٥٨). الطبعة الثانية ١٤٤٨هـ. رواية حفص عن عاصم من طريق الشاطبية.</span>
   </div>
 </footer>
 
 <script>
 (function(){
-  var LESSONS = [['madkhal','المدخل'],['mithlan','المِثلان'],['mutajanisan','المتجانسان'],['mutaqariban','المتقاربان'],['mutabaidan','المتباعدان'],['mawani','موانع العلاقة']];
+  var LESSONS = [['madkhal','المدخل'],['mithlan','المِثلان'],['mutajanisan','المتجانسان'],['mutaqariban','المتقاربان'],['mutabaidan','المتباعدان'],['mawani','موانع العلاقة'],['rawm','الروم والإشمام']];
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
   var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
   var ids = panels.map(function(p){return p.id});
@@ -1080,7 +1156,7 @@ footer .who{font-family:var(--f-display);font-weight:600;color:var(--ink);font-s
   /* ---------- Progress (kept in this browser only) ---------- */
   var done = {};
   try{ done = JSON.parse(localStorage.getItem('alaqat-done') || '{}') || {}; }catch(e){ done = {}; }
-  var CHEERS = ['بداية موفقة، تابع!','أحسنت، درس آخر يُضاف لرصيدك.','نصف الطريق، استمر.','ممتاز، اقتربت من الختام.','درس واحد ويكتمل الباب.','ما شاء الله! أتممت الباب كله. جرّب التدريب الشامل.'];
+  var CHEERS = ['بداية موفقة، تابع!','أحسنت، درس آخر يُضاف لرصيدك.','نصف الطريق، استمر.','ممتاز، اقتربت من الختام.','اقتربت جداً، تابع.','درس واحد وتكتمل الدروس.','ما شاء الله! أتممت الباب كله. جرّب التدريب الشامل.'];
   function count(){ return LESSONS.filter(function(l){return done[l[0]];}).length; }
   function renderProgress(){
     var c = count();
